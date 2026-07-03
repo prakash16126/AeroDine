@@ -1,0 +1,1798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AeroDine | Premium Indian Cloud Kitchen</title>
+  <meta name="description" content="AeroDine - Authentic Indian flavours prepared by master chefs, delivered fresh and hot to your doorstep in eco-friendly thermal packaging.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ----------------------------------------------------
+       1. VARIABLES & BASE SETUP
+       ---------------------------------------------------- */
+    :root {
+      --bg-slate: #0b0f19;
+      --bg-slate-dark: #070a10;
+      --bg-card: rgba(22, 28, 45, 0.7);
+      --accent-orange: #ff6b35;
+      --accent-orange-glow: rgba(255, 107, 53, 0.35);
+      --accent-green: #22c55e;
+      --accent-red: #ef4444;
+      --glass-border: rgba(255, 255, 255, 0.05);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --font-family: 'Plus Jakarta Sans', sans-serif;
+      --transition-core: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg-slate);
+      color: var(--text-primary);
+      font-family: var(--font-family);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    a, button {
+      font-family: inherit;
+    }
+
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-slate-dark);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-orange);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #e0531e;
+    }
+
+    /* ----------------------------------------------------
+       2. NAVIGATION BAR
+       ---------------------------------------------------- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(7, 10, 16, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      fill: none;
+      stroke: var(--accent-orange);
+      stroke-width: 2.5;
+    }
+
+    .logo-name {
+      font-weight: 800;
+      font-size: 1.4rem;
+      letter-spacing: -0.5px;
+      background: linear-gradient(90deg, #ffffff, #ffe0d3, var(--accent-orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2.2rem;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: var(--transition-core);
+      position: relative;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent-orange);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-orange);
+      transition: var(--transition-core);
+    }
+
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+    }
+
+    .cart-btn {
+      background: var(--glass-border);
+      border: 1px solid var(--glass-border);
+      padding: 0.55rem 1.1rem;
+      border-radius: 50px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: var(--transition-core);
+    }
+
+    .cart-btn:hover {
+      border-color: var(--accent-orange);
+      background: rgba(255, 107, 53, 0.08);
+      color: var(--accent-orange);
+    }
+
+    .cart-badge {
+      background: var(--accent-orange);
+      color: #070a10;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 0.15rem 0.45rem;
+      border-radius: 20px;
+      transition: var(--transition-core);
+    }
+
+    /* ----------------------------------------------------
+       3. HERO SECTION
+       ---------------------------------------------------- */
+    .hero {
+      min-height: 90vh;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 8rem 2rem 4rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4rem;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 600px;
+      z-index: 2;
+    }
+
+    .premium-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 107, 53, 0.08);
+      border: 1px solid rgba(255, 107, 53, 0.25);
+      padding: 0.45rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent-orange);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      letter-spacing: -1.5px;
+      color: white;
+    }
+
+    .hero-title span {
+      color: var(--accent-orange);
+      background: linear-gradient(135deg, #ff9f1c, var(--accent-orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 2.25rem;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent-orange);
+      border: none;
+      color: #050510;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 1rem 2.2rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: var(--transition-core);
+      box-shadow: 0 4px 15px rgba(255, 107, 53, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+      background: #e0531e;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 1rem 2.2rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: var(--transition-core);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: var(--text-secondary);
+      transform: translateY(-2px);
+    }
+
+    /* Modern Hero Visual */
+    .hero-visual-frame {
+      position: relative;
+      width: 440px;
+      height: 440px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+
+    .hero-visual-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255, 107, 53, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-illustration {
+      width: 320px;
+      height: 320px;
+      filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
+      animation: gentle-bob 4s ease-in-out infinite;
+    }
+
+    /* ----------------------------------------------------
+       4. MENU SECTION
+       ---------------------------------------------------- */
+    .menu-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.75rem;
+      color: white;
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    /* Category filter tabs */
+    .menu-filters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--glass-border);
+      border: 1px solid var(--glass-border);
+      padding: 0.6rem 1.4rem;
+      border-radius: 50px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: var(--transition-core);
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent-orange);
+      color: #070a10;
+      border-color: var(--accent-orange);
+    }
+
+    /* Responsive grid layout */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2.5rem;
+    }
+
+    /* Modern clean food cards */
+    .food-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 1.5rem;
+      transition: var(--transition-core);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .food-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 107, 53, 0.3);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .food-image-frame {
+      height: 160px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      background: rgba(255,255,255,0.01);
+      border-radius: 14px;
+      padding: 1rem;
+    }
+
+    .food-svg {
+      width: 110px;
+      height: 110px;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.5));
+      transition: var(--transition-core);
+    }
+
+    .food-card:hover .food-svg {
+      transform: scale(1.08);
+    }
+
+    .food-info-body {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .food-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
+    }
+
+    .food-category-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--text-secondary);
+      opacity: 0.8;
+    }
+
+    /* Veg/Non-Veg indicators */
+    .india-diet-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .veg-dot-border {
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--accent-green);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px;
+    }
+
+    .veg-dot-border::after {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      background-color: var(--accent-green);
+      border-radius: 50%;
+    }
+
+    .nonveg-dot-border {
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--accent-red);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px;
+    }
+
+    .nonveg-dot-border::after {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      background-color: var(--accent-red);
+      border-radius: 50%;
+    }
+
+    .food-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: white;
+      letter-spacing: -0.2px;
+    }
+
+    .food-description {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .food-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .food-cost {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: white;
+    }
+
+    .btn-add-payload {
+      background: transparent;
+      border: 1px solid rgba(255, 107, 53, 0.4);
+      color: var(--text-primary);
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: var(--transition-core);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-add-payload:hover {
+      background: var(--accent-orange);
+      color: #070a10;
+      border-color: var(--accent-orange);
+      box-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+    }
+
+    /* ----------------------------------------------------
+       5. FLOATING STICKY CART OVERLAY PANEL
+       ---------------------------------------------------- */
+    .cart-drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(3, 3, 10, 0.5);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition-core);
+    }
+
+    .cart-drawer-overlay.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-drawer-panel {
+      position: fixed;
+      top: 0;
+      right: -460px;
+      width: 100%;
+      max-width: 440px;
+      height: 100%;
+      background: var(--bg-slate-dark);
+      border-left: 1px solid var(--glass-border);
+      box-shadow: -15px 0 35px rgba(0, 0, 0, 0.5);
+      z-index: 201;
+      display: flex;
+      flex-direction: column;
+      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cart-drawer-overlay.visible .cart-drawer-panel {
+      right: 0;
+    }
+
+    .cart-panel-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-panel-title {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .cart-panel-title svg {
+      color: var(--accent-orange);
+    }
+
+    .btn-close-drawer {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: var(--transition-core);
+      padding: 0.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .btn-close-drawer:hover {
+      color: var(--accent-orange);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .cart-panel-body {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .cart-empty-prompt {
+      text-align: center;
+      margin: auto;
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .cart-empty-prompt svg {
+      opacity: 0.3;
+    }
+
+    /* Cart item card design */
+    .cart-list-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      transition: var(--transition-core);
+    }
+
+    .cart-list-item:hover {
+      border-color: rgba(255, 107, 53, 0.2);
+    }
+
+    .cart-item-logo-box {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cart-item-info-box {
+      flex-grow: 1;
+    }
+
+    .cart-item-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .cart-item-cost {
+      color: var(--accent-orange);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .qty-counter {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 0.2rem 0.4rem;
+      border-radius: 6px;
+    }
+
+    .btn-qty {
+      background: transparent;
+      border: none;
+      color: var(--text-primary);
+      cursor: pointer;
+      font-size: 0.9rem;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-core);
+      border-radius: 3px;
+    }
+
+    .btn-qty:hover {
+      color: var(--accent-orange);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .qty-text {
+      font-size: 0.8rem;
+      font-weight: 700;
+      width: 18px;
+      text-align: center;
+    }
+
+    .btn-remove-cart-item {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 0.4rem;
+      transition: var(--transition-core);
+      border-radius: 6px;
+    }
+
+    .btn-remove-cart-item:hover {
+      color: var(--accent-red);
+      background: rgba(239, 68, 68, 0.08);
+    }
+
+    /* Cart Drawer Footer */
+    .cart-panel-footer {
+      padding: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      background: var(--bg-slate-dark);
+    }
+
+    .cart-bill-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .cart-bill-row.total-price-row {
+      margin-top: 0.8rem;
+      margin-bottom: 1.25rem;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: white;
+      border-top: 1px dashed rgba(255, 255, 255, 0.08);
+      padding-top: 0.8rem;
+    }
+
+    .final-cost-val {
+      color: var(--accent-orange);
+    }
+
+    /* Delivery Form Elements */
+    .delivery-input-group {
+      margin-bottom: 0.9rem;
+      position: relative;
+    }
+
+    .delivery-label {
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--text-secondary);
+      margin-bottom: 0.3rem;
+    }
+
+    .delivery-input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 0.65rem 0.8rem;
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-size: 0.85rem;
+      transition: var(--transition-core);
+    }
+
+    .delivery-input:focus {
+      outline: none;
+      border-color: var(--accent-orange);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .btn-place-order {
+      width: 100%;
+      background: var(--accent-orange);
+      border: none;
+      color: #050510;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0.95rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition-core);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
+    }
+
+    .btn-place-order:hover {
+      background: #e0531e;
+      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.35);
+    }
+
+    .btn-place-order:disabled {
+      background: rgba(255,255,255,0.04);
+      color: var(--text-secondary);
+      border: 1px solid rgba(255,255,255,0.03);
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    /* ----------------------------------------------------
+       6. REALISTIC ORDER CONFIRMATION MODAL
+       ---------------------------------------------------- */
+    .success-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(3, 3, 10, 0.7);
+      backdrop-filter: blur(12px);
+      z-index: 300;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition-core);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .success-modal-overlay.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .success-modal-panel {
+      background: var(--bg-slate-dark);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      border-radius: 20px;
+      padding: 2.5rem;
+      max-width: 460px;
+      width: 90%;
+      text-align: center;
+      transform: scale(0.95);
+      transition: var(--transition-core);
+    }
+
+    .success-modal-overlay.visible .success-modal-panel {
+      transform: scale(1);
+    }
+
+    .success-delivery-icon {
+      width: 72px;
+      height: 72px;
+      margin-bottom: 1.25rem;
+      filter: drop-shadow(0 0 10px rgba(34,197,94,0.3));
+    }
+
+    .success-modal-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: white;
+    }
+
+    .success-modal-desc {
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: 1.75rem;
+      font-size: 0.92rem;
+    }
+
+    .success-details-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 1.75rem;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+
+    .details-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.4rem;
+    }
+    .details-row:last-child {
+      margin-bottom: 0;
+    }
+    .details-lbl {
+      color: var(--text-secondary);
+    }
+    .details-val {
+      font-weight: 600;
+      color: white;
+    }
+
+    .btn-modal-close {
+      background: var(--accent-orange);
+      border: none;
+      color: #070a10;
+      font-weight: 700;
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition-core);
+    }
+
+    .btn-modal-close:hover {
+      background: #e0531e;
+    }
+
+    /* ----------------------------------------------------
+       7. TECH SPECS / DELIVERY PROMISE SECTION
+       ---------------------------------------------------- */
+    .delivery-promise-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .promise-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .promise-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      padding: 2.25rem;
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .promise-icon-box {
+      width: 52px;
+      height: 52px;
+      background: rgba(255, 107, 53, 0.08);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      color: var(--accent-orange);
+    }
+
+    .promise-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: white;
+    }
+
+    .promise-card p {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    /* ----------------------------------------------------
+       8. FOOTER SECTION
+       ---------------------------------------------------- */
+    footer {
+      background: var(--bg-slate-dark);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 3.5rem 2rem 2.5rem 2rem;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .footer-links-list {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+    }
+
+    .footer-links-list a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: var(--transition-core);
+    }
+
+    .footer-links-list a:hover {
+      color: var(--accent-orange);
+    }
+
+    .footer-copyright {
+      color: rgba(255, 255, 255, 0.15);
+      font-size: 0.75rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+      width: 100%;
+      text-align: center;
+      padding-top: 1.5rem;
+    }
+
+    /* ----------------------------------------------------
+       9. KEYFRAMES & ANIMATIONS
+       ---------------------------------------------------- */
+    @keyframes gentle-bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ----------------------------------------------------
+       10. RESPONSIVE DESIGN (MEDIA QUERIES)
+       ---------------------------------------------------- */
+    @media (max-width: 1024px) {
+      .hero {
+        padding-top: 7rem;
+        gap: 2rem;
+      }
+      .hero-title {
+        font-size: 3.2rem;
+      }
+      .hero-visual-frame {
+        width: 320px;
+        height: 320px;
+      }
+      .hero-illustration {
+        width: 250px;
+        height: 250px;
+      }
+      .promise-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 868px) {
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding-top: 7.5rem;
+        gap: 2rem;
+      }
+      .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .hero-visual-frame {
+        width: 260px;
+        height: 260px;
+      }
+      .hero-illustration {
+        width: 200px;
+        height: 200px;
+      }
+      .nav-menu {
+        display: none;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      .section-title {
+        font-size: 2.1rem;
+      }
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+      .cart-drawer-panel {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Deep Space Color nebula effect in corner -->
+  <div class="nebula-glow nebula-1"></div>
+
+  <!-- Header Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="logo-container">
+        <!-- Delivery Cloche Icon SVG -->
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 17h20" />
+          <path d="M6 17a6 6 0 0 1 12 0" />
+          <path d="M12 11V8a1 1 0 0 0-1-1H9.5a.5.5 0 0 1-.5-.5v-1A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5v1a.5.5 0 0 1-.5.5H13v3" />
+        </svg>
+        <span class="logo-name">AeroDine</span>
+      </a>
+      
+      <ul class="nav-menu">
+        <li><a href="#" class="nav-link active">Home</a></li>
+        <li><a href="#menu-catalog" class="nav-link">Menu</a></li>
+        <li><a href="#tech-specs" class="nav-link">Delivery Promise</a></li>
+      </ul>
+
+      <button class="cart-btn" onclick="toggleCartDrawer(true)" aria-label="Open Shopping Cart">
+        <!-- Shopping Bag Icon -->
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path>
+        </svg>
+        <span>Cart</span>
+        <span class="cart-badge" id="cart-item-count">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="premium-badge">
+        Fresh &amp; Fast Delivery
+      </div>
+      <h1 class="hero-title">
+        Gourmet Indian Flavours <span>Delivered Hot</span>
+      </h1>
+      <p class="hero-subtitle">
+        Indulge in authentic regional recipes prepared by culinary masters. Sealed in secure, temperature-locking thermal pods and delivered safely to your home.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="scrollCatalog()">Order Now</button>
+        <button class="btn-outline" onclick="scrollSpecs()">Our Process</button>
+      </div>
+    </div>
+
+    <!-- Visual Food Illustration (Large Biryani Bowl SVG) -->
+    <div class="hero-visual-frame">
+      <div class="hero-visual-bg"></div>
+      <svg class="hero-illustration" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="100" cy="140" rx="80" ry="25" fill="rgba(0, 0, 0, 0.4)" />
+        <path d="M30 110C30 110 35 160 100 160C165 160 170 110 170 110H30Z" fill="url(#hero-bowl-grad)" stroke="#ff6b35" stroke-width="3" />
+        <ellipse cx="100" cy="108" rx="66" ry="22" fill="#e9c46a" />
+        <circle cx="70" cy="100" r="10" fill="#a0c4ff" opacity="0.3" />
+        <path d="M50 108C50 108 65 92 100 92C135 92 150 108 150 108" stroke="#ff9f1c" stroke-width="4" stroke-linecap="round" fill="none" />
+        <!-- Rice grain sparks -->
+        <circle cx="85" cy="85" r="3" fill="#ffe3a0" />
+        <circle cx="120" cy="80" r="2.5" fill="#ffffff" />
+        <circle cx="105" cy="72" r="3" fill="#ffe3a0" />
+        <defs>
+          <linearGradient id="hero-bowl-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#1e293b" />
+            <stop offset="100%" stop-color="#0f172a" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  </header>
+
+  <!-- Menu Catalog Section -->
+  <section class="menu-section" id="menu-catalog">
+    <div class="section-header">
+      <h2 class="section-title">Explore Our Menu</h2>
+      <p class="section-subtitle">A curated choice of classics cooked fresh on order. Packed in spill-proof containers for smooth transport.</p>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="menu-filters">
+      <button class="filter-btn active" onclick="filterMenu('all', this)">All Items</button>
+      <button class="filter-btn" onclick="filterMenu('starter', this)">Starters</button>
+      <button class="filter-btn" onclick="filterMenu('main', this)">Mains</button>
+      <button class="filter-btn" onclick="filterMenu('bread', this)">Breads &amp; Rice</button>
+      <button class="filter-btn" onclick="filterMenu('dessert', this)">Desserts</button>
+    </div>
+
+    <!-- Responsive Cards Grid (10 items) -->
+    <div class="menu-grid" id="menu-grid">
+      
+      <!-- Item 1: Paneer Tikka -->
+      <div class="food-card" data-category="starter">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="115" rx="70" ry="20" fill="rgba(0, 0, 0, 0.2)" />
+            <line x1="45" y1="135" x2="155" y2="65" stroke="#ffe3a0" stroke-width="3" />
+            <!-- Paneer cubes -->
+            <rect x="62" y="102" width="24" height="24" rx="4" fill="#ffd166" stroke="#ffb703" stroke-width="1.5" transform="rotate(15 74 114)" />
+            <polygon points="98,90 112,85 105,102 93,98" fill="#2a9d8f" />
+            <rect x="110" y="70" width="24" height="24" rx="4" fill="#ffd166" stroke="#ffb703" stroke-width="1.5" transform="rotate(35 122 82)" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Starter</span>
+            <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Paneer Tikka</h3>
+          <p class="food-description">Cubes of soft cottage cheese marinated in spiced yogurt and grilled to smoky perfection in clay ovens.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹260.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(1, 'Paneer Tikka', 260.00, 'veg')">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2: Veg Samosa -->
+      <div class="food-card" data-category="starter">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="125" rx="60" ry="15" fill="rgba(0,0,0,0.2)" />
+            <polygon points="100,52 145,120 55,120" fill="#f7a072" stroke="#e0531e" stroke-width="2" />
+            <line x1="88" y1="90" x2="70" y2="115" stroke="#d4a373" stroke-width="1.5" />
+            <line x1="112" y1="90" x2="130" y2="115" stroke="#d4a373" stroke-width="1.5" />
+            <!-- Chutney cup -->
+            <circle cx="145" cy="75" r="12" fill="#2a9d8f" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Starter</span>
+            <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Veg Samosa (2 Pcs)</h3>
+          <p class="food-description">Crispy pastry triangles packed with a seasoned mixture of mashed potatoes, green peas, and local coriander spices.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹50.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(2, 'Veg Samosa (2 Pcs)', 50.00, 'veg')">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3: Chicken Biryani -->
+      <div class="food-card" data-category="main">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="120" rx="70" ry="25" fill="rgba(0,0,0,0.2)" />
+            <path d="M50 100C50 100 55 145 100 145C145 145 150 100 150 100H50Z" fill="#2b2d42" stroke="#ff6b35" stroke-width="1.5" />
+            <ellipse cx="100" cy="98" rx="46" ry="16" fill="#e9c46a" />
+            <path d="M80 100C90 94 110 94 120 100" stroke="#f7a072" stroke-width="2.5" fill="none" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Main Course</span>
+            <div class="india-diet-tag"><span class="nonveg-dot-border" title="Non-Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Chicken Biryani</h3>
+          <p class="food-description">Classic long-grain basmati rice cooked with saffron, Indian spices, and succulent marinated chicken chunks.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹340.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(3, 'Chicken Biryani', 340.00, 'nonveg')">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 4: Butter Chicken -->
+      <div class="food-card" data-category="main">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="65" fill="rgba(0,0,0,0.2)" />
+            <path d="M50 110C50 110 52 145 100 145C148 145 150 110 150 110H50Z" fill="#212529" stroke="#e0531e" stroke-width="1.5" />
+            <ellipse cx="100" cy="108" rx="46" ry="14" fill="#e76f51" />
+            <path d="M75 108C82 104 118 104 125 108" stroke="white" stroke-width="1.5" fill="none" opacity="0.8" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Main Course</span>
+            <div class="india-diet-tag"><span class="nonveg-dot-border" title="Non-Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Butter Chicken</h3>
+          <p class="food-description">Roasted chicken pieces simmered in a velvety, buttery onion-tomato gravy enriched with cream and fenugreek leaves.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹360.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(4, 'Butter Chicken', 360.00, 'nonveg')">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 5: Paneer Butter Masala -->
+      <div class="food-card" data-category="main">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="65" fill="rgba(0,0,0,0.2)" />
+            <path d="M50 110C50 110 52 145 100 145C148 145 150 110 150 110H50Z" fill="#212529" stroke="#e0531e" stroke-width="1.5" />
+            <ellipse cx="100" cy="108" rx="46" ry="14" fill="#ffd166" />
+            <rect x="75" y="104" width="12" height="12" fill="white" transform="rotate(15 75 104)" />
+            <rect x="110" y="103" width="10" height="10" fill="white" transform="rotate(45 110 103)" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Main Course</span>
+            <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Paneer Butter Masala</h3>
+          <p class="food-description">Fresh cottage cheese cubes cooked in a rich, creamy tomato gravy with a touch of honey and spice blends.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹280.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(5, 'Paneer Butter Masala', 280.00, 'veg')">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 6: Dal Makhani -->
+      <div class="food-card" data-category="main">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="65" fill="rgba(0,0,0,0.2)" />
+            <path d="M50 110C50 110 52 145 100 145C148 145 150 110 150 110H50Z" fill="#1b1d28" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+            <ellipse cx="100" cy="108" rx="46" ry="14" fill="#4f3824" />
+            <path d="M80 106C90 103 110 103 120 106" stroke="white" stroke-width="2" fill="none" opacity="0.8" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Main Course</span>
+            <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Dal Makhani</h3>
+          <p class="food-description">Slow-cooked black lentils and kidney beans simmered overnight, enriched with butter, cream, and tandoori spices.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹220.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(6, 'Dal Makhani', 220.00, 'veg')">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 7: Butter Naan -->
+      <div class="food-card" data-category="bread">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="105" rx="65" ry="40" fill="#ffd8be" stroke="#d4a373" stroke-width="2" transform="rotate(-15 100 105)" />
+            <path d="M92 92C92 92 98 88 106 93C114 98 112 107 104 105C96 103 92 100 92 92Z" fill="#ffb703" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Bread</span>
+            <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Butter Naan</h3>
+          <p class="food-description">Soft, leavened flatbread baked inside hot tandoor clay-ovens and generously brushed with fresh butter.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹60.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(7, 'Butter Naan', 60.00, 'veg')">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 8: Garlic Naan -->
+      <div class="food-card" data-category="bread">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="105" rx="65" ry="40" fill="#ffd8be" stroke="#d4a373" stroke-width="2" transform="rotate(-15 100 105)" />
+            <circle cx="80" cy="90" r="2" fill="#2d1a09" />
+            <circle cx="110" cy="80" r="2" fill="#2d1a09" />
+            <circle cx="95" cy="115" r="2" fill="#2a9d8f" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Bread</span>
+            <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Garlic Naan</h3>
+          <p class="food-description">Clay-oven leavened bread infused with finely chopped fresh garlic grains and warm butter sheen.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹70.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(8, 'Garlic Naan', 70.00, 'veg')">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 9: Jeera Rice -->
+      <div class="food-card" data-category="bread">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="120" rx="70" ry="25" fill="rgba(0,0,0,0.2)" />
+            <path d="M50 100C50 100 55 140 100 140C145 140 150 100 150 100H50Z" fill="#1b1d28" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+            <ellipse cx="100" cy="98" rx="46" ry="14" fill="#ffffff" />
+            <!-- cumin seeds scattered -->
+            <circle cx="85" cy="95" r="1.5" fill="#3d2a1b" />
+            <circle cx="115" cy="100" r="1.5" fill="#3d2a1b" />
+            <circle cx="100" cy="93" r="1.5" fill="#3d2a1b" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Rice</span>
+            <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Jeera Rice</h3>
+          <p class="food-description">Aromatic basmati rice tempered with ghee, roasted cumin seeds, and freshly chopped coriander leaves.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹140.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(9, 'Jeera Rice', 140.00, 'veg')">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 10: Gulab Jamun -->
+      <div class="food-card" data-category="dessert">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="120" rx="60" ry="15" fill="rgba(0,0,0,0.2)" />
+            <path d="M60 100C60 100 62 135 100 135C138 135 140 100 140 100H60Z" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+            <circle cx="88" cy="95" r="16" fill="#582f0e" />
+            <circle cx="112" cy="102" r="14" fill="#582f0e" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Dessert</span>
+            <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Gulab Jamun (2 Pcs)</h3>
+          <p class="food-description">Classic brown dumplings prepared from milk solids, deep-fried and soaked in a warm saffron cardamom sugar syrup.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹70.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(10, 'Gulab Jamun (2 Pcs)', 70.00, 'veg')">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Technical Delivery Promise Section -->
+  <section class="delivery-promise-section" id="tech-specs">
+    <div class="section-header">
+      <h2 class="section-title">Our Delivery Promise</h2>
+      <p class="section-subtitle">Premium food requires reliable transport. Here is how we ensure quality gets to your door.</p>
+    </div>
+    
+    <div class="promise-grid">
+      <div class="promise-card">
+        <div class="promise-icon-box">
+          <!-- Flame icon -->
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.25 8.25 0 015.362-4.386z"></path>
+          </svg>
+        </div>
+        <h3>Triple-Layer Thermal Insulation</h3>
+        <p>Your food is sealed in food-grade insulated bags that lock in heat, maintaining kitchen-fresh temperatures up to 45 minutes.</p>
+      </div>
+
+      <div class="promise-card">
+        <div class="promise-icon-box">
+          <!-- Check icon -->
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+          </svg>
+        </div>
+        <h3>Spill-Proof Packaging</h3>
+        <p>Curries and gravies are locked in double-walled, induction-sealed containers designed to avoid leakages during active transit.</p>
+      </div>
+
+      <div class="promise-card">
+        <div class="promise-icon-box">
+          <!-- Clock icon -->
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </div>
+        <h3>Swift Local Delivery</h3>
+        <p>Operating dedicated regional delivery riders to guarantee your order reaches you within the promised time window.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticky/Floating Cart Sidebar -->
+  <div class="cart-drawer-overlay" id="cart-drawer" onclick="toggleCartDrawer(false)">
+    <div class="cart-drawer-panel" onclick="event.stopPropagation()">
+      <div class="cart-panel-header">
+        <h2 class="cart-panel-title">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path>
+          </svg>
+          Your Shopping Cart
+        </h2>
+        <button class="btn-close-drawer" onclick="toggleCartDrawer(false)" aria-label="Close Cart">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Items Section -->
+      <div class="cart-panel-body" id="cart-items-wrapper">
+        <div class="cart-empty-prompt">
+          <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path>
+          </svg>
+          <p>Your cart is empty.</p>
+        </div>
+      </div>
+
+      <!-- Subtotal and checkout details -->
+      <div class="cart-panel-footer">
+        <div class="cart-bill-row">
+          <span>Item Total</span>
+          <span id="bill-subtotal">₹0.00</span>
+        </div>
+        <div class="cart-bill-row">
+          <span>Delivery Partner Fee</span>
+          <span>₹40.00</span>
+        </div>
+        <div class="cart-bill-row total-price-row">
+          <span>Grand Total</span>
+          <span class="final-cost-val" id="bill-total">₹0.00</span>
+        </div>
+
+        <div class="delivery-input-group">
+          <label class="delivery-label" for="delivery-phone">Mobile Number</label>
+          <input type="tel" class="delivery-input" id="delivery-phone" placeholder="e.g. +91 98765 43210" value="+91 98765 43210">
+        </div>
+
+        <div class="delivery-input-group">
+          <label class="delivery-label" for="dock-id">Delivery Address</label>
+          <input type="text" class="delivery-input" id="dock-id" placeholder="Enter full address" value="Flat 402, Block A, Green Glen Layout, Bengaluru">
+        </div>
+
+        <button class="btn-place-order" id="btn-place-order" onclick="initiateLaunch()" disabled>
+          Place Order
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real Success Confirmation Modal Overlay -->
+  <div class="success-modal-overlay" id="launch-success-modal">
+    <div class="success-modal-panel">
+      <!-- Checked box icon -->
+      <svg class="success-delivery-icon" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <h3 class="success-modal-title">Order Placed Successfully!</h3>
+      <p class="success-modal-desc">
+        We have received your order. Our kitchen team has started preparing your dishes fresh. A delivery partner will assign shortly.
+      </p>
+      
+      <div class="success-details-box">
+        <div class="details-row">
+          <span class="details-lbl">Order ID</span>
+          <span class="details-val" id="success-order-id">#AD-84920</span>
+        </div>
+        <div class="details-row">
+          <span class="details-lbl">Est. Delivery Time</span>
+          <span class="details-val">35 - 45 Mins</span>
+        </div>
+        <div class="details-row">
+          <span class="details-lbl">Deliver To</span>
+          <span class="details-val" id="success-address">Green Glen Layout, Bengaluru</span>
+        </div>
+      </div>
+
+      <div>
+        <button class="btn-modal-close" onclick="closeSuccessModal(true)">Got It</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <a href="#" class="footer-logo-box">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="2.2">
+          <path d="M2 17h20" />
+          <path d="M6 17a6 6 0 0 1 12 0" />
+          <path d="M12 11V8a1 1 0 0 0-1-1H9.5a.5.5 0 0 1-.5-.5v-1A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5v1a.5.5 0 0 1-.5.5H13v3" />
+        </svg>
+        <span class="footer-logo-name">AeroDine Kitchen</span>
+      </a>
+      <p style="font-size: 0.85rem; color: var(--text-secondary); max-width: 480px; text-align: center; line-height: 1.5;">
+        Premium ingredients, absolute hygiene, and eco-friendly temperature-locked containers.
+      </p>
+      <ul class="footer-links-list">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#menu-catalog">Menu</a></li>
+      </ul>
+      <div class="footer-copyright">
+        &copy; 2026 AeroDine Foods Pvt Ltd. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ----------------------------------------------------
+       11. JAVASCRIPT CONTROLLERS
+       ---------------------------------------------------- -->
+  <script>
+    /* 1. SCROLL HELPER ACTION */
+    function scrollCatalog() {
+      document.getElementById('menu-catalog').scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    function scrollSpecs() {
+      document.getElementById('tech-specs').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* 2. CATEGORY FILTER CONTROLLER */
+    function filterMenu(category, btnElement) {
+      // Toggle active filter button
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      btnElement.classList.add('active');
+
+      // Filter food cards
+      const cards = document.querySelectorAll('.food-card');
+      cards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        if (category === 'all' || cardCategory === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    /* 3. FLIGHT PAYLOAD (CART) ENGINE */
+    let payload = [];
+    const deliveryPartnerFee = 40.00;
+
+    function toggleCartDrawer(open) {
+      const drawer = document.getElementById('cart-drawer');
+      if (open) {
+        drawer.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+      } else {
+        drawer.classList.remove('visible');
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    function addItemToPayload(id, name, price, type) {
+      const existing = payload.find(item => item.id === id);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        payload.push({ id, name, price, type, quantity: 1 });
+      }
+
+      // Visual feedback: badge pop
+      const badge = document.getElementById('cart-item-count');
+      badge.style.transform = 'scale(1.3)';
+      setTimeout(() => badge.style.transform = 'scale(1)', 200);
+
+      renderPayloadUI();
+    }
+
+    function adjustPayloadQty(id, delta) {
+      const target = payload.find(item => item.id === id);
+      if (target) {
+        target.quantity += delta;
+        if (target.quantity <= 0) {
+          payload = payload.filter(item => item.id !== id);
+        }
+      }
+      renderPayloadUI();
+    }
+
+    function removePayloadItem(id) {
+      payload = payload.filter(item => item.id !== id);
+      renderPayloadUI();
+    }
+
+    function renderPayloadUI() {
+      const container = document.getElementById('cart-items-wrapper');
+      const badge = document.getElementById('cart-item-count');
+      const subtotalLabel = document.getElementById('bill-subtotal');
+      const totalLabel = document.getElementById('bill-total');
+      const submitBtn = document.getElementById('btn-place-order');
+
+      if (payload.length === 0) {
+        container.innerHTML = `
+          <div class="cart-empty-prompt">
+            <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path>
+            </svg>
+            <p>Your cart is empty.</p>
+          </div>
+        `;
+        badge.textContent = 0;
+        subtotalLabel.textContent = '₹0.00';
+        totalLabel.textContent = '₹0.00';
+        submitBtn.disabled = true;
+        return;
+      }
+
+      let innerHTML = '';
+      let totalItems = 0;
+      let costSum = 0;
+
+      payload.forEach(item => {
+        totalItems += item.quantity;
+        const lineTotal = item.price * item.quantity;
+        costSum += lineTotal;
+
+        // Diet tag indicator
+        let itemIcon = '';
+        if (item.type === 'veg') {
+          itemIcon = `<svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="6" fill="var(--accent-green)" /></svg>`;
+        } else {
+          itemIcon = `<svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="6" fill="var(--accent-red)" /></svg>`;
+        }
+
+        innerHTML += `
+          <div class="cart-list-item">
+            <div class="cart-item-logo-box">${itemIcon}</div>
+            <div class="cart-item-info-box">
+              <div class="cart-item-title">${item.name}</div>
+              <div class="cart-item-cost">₹${item.price.toFixed(2)}</div>
+            </div>
+            <div class="qty-counter">
+              <button class="btn-qty" onclick="adjustPayloadQty(${item.id}, -1)">−</button>
+              <span class="qty-text">${item.quantity}</span>
+              <button class="btn-qty" onclick="adjustPayloadQty(${item.id}, 1)">+</button>
+            </div>
+            <button class="btn-remove-cart-item" onclick="removePayloadItem(${item.id})" aria-label="Remove item">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+              </svg>
+            </button>
+          </div>
+        `;
+      });
+
+      container.innerHTML = innerHTML;
+      badge.textContent = totalItems;
+      subtotalLabel.textContent = `₹${costSum.toFixed(2)}`;
+      totalLabel.textContent = `₹${(costSum + deliveryPartnerFee).toFixed(2)}`;
+      submitBtn.disabled = false;
+    }
+
+    /* 4. REALISTIC ORDER SUBMIT ENGINE */
+    function initiateLaunch() {
+      const destination = document.getElementById('dock-id').value || 'Bengaluru';
+      const randomOrderId = 'AD-' + Math.floor(10000 + Math.random() * 90000);
+      
+      document.getElementById('success-order-id').textContent = randomOrderId;
+      document.getElementById('success-address').textContent = destination;
+
+      toggleCartDrawer(false);
+
+      // Open Success modal
+      const modal = document.getElementById('launch-success-modal');
+      modal.classList.add('visible');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSuccessModal(clearOrders = false) {
+      const modal = document.getElementById('launch-success-modal');
+      modal.classList.remove('visible');
+      document.body.style.overflow = 'auto';
+
+      if (clearOrders) {
+        payload = [];
+        renderPayloadUI();
+      }
+    }
+  </script>
+</body>
+</html>
