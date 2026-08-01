@@ -2766,6 +2766,9 @@
     function togglePreorderPrompt(checked) {
       const btn = document.getElementById('btn-submit-booking');
       btn.textContent = checked ? "Reserve Table & Pre-order Food" : "Confirm Reservation";
+      if (checked) {
+        scrollCatalog();
+      }
     }
 
     function showBookingSuccessModal() {
