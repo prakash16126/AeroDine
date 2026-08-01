@@ -1532,7 +1532,7 @@
   <header class="hero">
     <div class="hero-content">
       <div class="premium-badge">
-        Fine Dining · Bengaluru
+        Fine Dining · Hyderabad
       </div>
       <h1 class="hero-title">
         A World of Flavours <span>At Your Table</span>
@@ -2427,6 +2427,15 @@
         </div>
       </div>
 
+      <div class="cart-mode-toggle" role="group" aria-label="Order mode toggle">
+        <button type="button" class="cart-mode-btn active" id="cart-mode-dinein" onclick="setCartMode('dinein')">
+          Dine-in
+        </button>
+        <button type="button" class="cart-mode-btn" id="cart-mode-delivery" onclick="setCartMode('delivery')">
+          Delivery
+        </button>
+      </div>
+
       <!-- Subtotal and checkout details -->
       <div class="cart-panel-footer">
         <div class="cart-bill-row">
@@ -2446,6 +2455,28 @@
         <div class="delivery-input-group">
           <label class="delivery-label" for="delivery-phone">Mobile Number</label>
           <input type="tel" class="delivery-input" id="delivery-phone" placeholder="e.g. +91 98765 43210" value="+91 98765 43210">
+        </div>
+
+        <div class="delivery-section" id="delivery-details" style="display:none;">
+          <div class="delivery-input-group">
+            <label class="delivery-label" for="delivery-address">Delivery Address</label>
+            <input type="text" class="delivery-input" id="delivery-address" placeholder="Enter delivery address">
+          </div>
+          <div class="delivery-input-group">
+            <label class="delivery-label" for="delivery-instructions">Delivery Instructions</label>
+            <input type="text" class="delivery-input" id="delivery-instructions" placeholder="Leave a note for the rider (optional)">
+          </div>
+          <div class="delivery-input-group">
+            <label class="delivery-label" for="delivery-slot">Preferred Delivery Slot</label>
+            <select class="delivery-input" id="delivery-slot" style="background: rgba(11, 15, 25, 0.95); cursor: pointer;">
+              <option value="">Select delivery slot</option>
+              <option value="ASAP">ASAP</option>
+              <option value="12:00 PM - 01:00 PM">12:00 PM - 01:00 PM</option>
+              <option value="01:00 PM - 02:00 PM">01:00 PM - 02:00 PM</option>
+              <option value="07:00 PM - 08:00 PM">07:00 PM - 08:00 PM</option>
+              <option value="08:00 PM - 09:00 PM">08:00 PM - 09:00 PM</option>
+            </select>
+          </div>
         </div>
 
         <div class="delivery-input-group" id="dinein-table-group">
@@ -2507,7 +2538,7 @@
       <div class="about-brand">
         <div class="premium-badge" style="margin-bottom:1.2rem;">About AeroDine</div>
         <h2 class="about-title">Crafted with Passion,<br><span>Served with Care</span></h2>
-        <p class="about-desc">AeroDine is Bengaluru's destination for multi-cuisine fine dining. From Hyderabadi biryani to Pad Thai and continental classics, every dish is prepared by master chefs in our open kitchen and served in a warm, elegant ambiance.</p>
+        <p class="about-desc">AeroDine is Hyderabad's destination for multi-cuisine fine dining. From Hyderabadi biryani to Pad Thai and continental classics, every dish is prepared by master chefs in our open kitchen and served in a warm, elegant ambiance.</p>
         <div class="about-stats">
           <div class="about-stat">
             <span class="about-stat-num">50+</span>
@@ -2558,7 +2589,7 @@
             </div>
             <div>
               <h4>Open Daily · 12 PM – 11:30 PM</h4>
-              <p>Green Glen Layout, Bengaluru — walk-ins welcome, reservations recommended on weekends.</p>
+              <p>Hitech City, Hyderabad — walk-ins welcome, reservations recommended on weekends.</p>
             </div>
           </div>
         </div>
@@ -2578,7 +2609,7 @@
         <span class="footer-logo-name">AeroDine Restaurant</span>
       </a>
       <p style="font-size: 0.85rem; color: var(--text-secondary); max-width: 480px; text-align: center; line-height: 1.5;">
-        42, Green Glen Layout, Bengaluru · Open daily 12:00 PM – 11:30 PM · +91 98765 43210
+        42, Hitech City, Hyderabad · Open daily 12:00 PM – 11:30 PM · +91 98765 43210
       </p>
       <ul class="footer-links-list">
         <li><a href="#">Privacy Policy</a></li>
@@ -2675,6 +2706,7 @@
         dateInput.value = today;
         dateInput.min = today;
       }
+      setCartMode(cartMode);
     });
 
     function autoFilterTables(guestCount) {
@@ -2830,6 +2862,31 @@
 
     /* 3. TABLE ORDER ENGINE */
     let payload = [];
+    let cartMode = 'dinein';
+
+    function setCartMode(mode) {
+      cartMode = mode === 'delivery' ? 'delivery' : 'dinein';
+      const dineBtn = document.getElementById('cart-mode-dinein');
+      const deliveryBtn = document.getElementById('cart-mode-delivery');
+      const deliveryDetails = document.getElementById('delivery-details');
+      const dineinTableGroup = document.getElementById('dinein-table-group');
+      const submitBtn = document.getElementById('btn-place-order');
+
+      if (dineBtn && deliveryBtn) {
+        dineBtn.classList.toggle('active', cartMode === 'dinein');
+        deliveryBtn.classList.toggle('active', cartMode === 'delivery');
+      }
+
+      if (deliveryDetails) {
+        deliveryDetails.style.display = cartMode === 'delivery' ? 'block' : 'none';
+      }
+      if (dineinTableGroup) {
+        dineinTableGroup.style.display = cartMode === 'delivery' ? 'none' : 'block';
+      }
+      if (submitBtn) {
+        submitBtn.textContent = cartMode === 'delivery' ? 'Place Delivery Order' : 'Send Order to Kitchen';
+      }
+    }
 
     function toggleCartDrawer(open) {
       const drawer = document.getElementById('cart-drawer');
@@ -2951,32 +3008,57 @@
       const detailsBox = document.querySelector('#launch-success-modal .success-details-box');
 
       const guestName = document.getElementById('guest-name').value.trim() || (activeBooking ? activeBooking.name : 'Valued Guest');
+      const deliveryAddress = document.getElementById('delivery-address')?.value.trim() || '';
+      const deliverySlot = document.getElementById('delivery-slot')?.value || 'ASAP';
       const selectedTableText = `Table T${selectedTable}`;
       const bookingTimeText = activeBooking ? `${activeBooking.date} @ ${activeBooking.time}` : 'Walk-in · Today';
 
-      modalTitle.textContent = activeBooking ? "Pre-order Confirmed!" : "Order Sent to Kitchen!";
+      modalTitle.textContent = activeBooking ? "Pre-order Confirmed!" : (cartMode === 'delivery' ? "Delivery Order Confirmed!" : "Order Sent to Kitchen!");
       modalDesc.textContent = activeBooking
         ? "Your pre-order is confirmed. Our kitchen will have your dishes ready when you arrive."
-        : "Your order has been received. Our chefs are preparing your dishes — they will be served fresh at your table shortly.";
+        : (cartMode === 'delivery'
+          ? "Your delivery order is confirmed. Our rider will reach you shortly."
+          : "Your order has been received. Our chefs are preparing your dishes — they will be served fresh at your table shortly.");
 
-      detailsBox.innerHTML = `
-        <div class="details-row">
-          <span class="details-lbl">Order ID</span>
-          <span class="details-val">${randomOrderId}</span>
-        </div>
-        <div class="details-row">
-          <span class="details-lbl">Table</span>
-          <span class="details-val">${selectedTableText}</span>
-        </div>
-        <div class="details-row">
-          <span class="details-lbl">Guest</span>
-          <span class="details-val">${guestName}</span>
-        </div>
-        <div class="details-row">
-          <span class="details-lbl">${activeBooking ? 'Reservation' : 'Est. Serve Time'}</span>
-          <span class="details-val">${activeBooking ? bookingTimeText : '15 - 25 Mins'}</span>
-        </div>
-      `;
+      if (cartMode === 'delivery') {
+        detailsBox.innerHTML = `
+          <div class="details-row">
+            <span class="details-lbl">Order ID</span>
+            <span class="details-val">${randomOrderId}</span>
+          </div>
+          <div class="details-row">
+            <span class="details-lbl">Delivery</span>
+            <span class="details-val">${deliveryAddress || 'Address not provided'}</span>
+          </div>
+          <div class="details-row">
+            <span class="details-lbl">Guest</span>
+            <span class="details-val">${guestName}</span>
+          </div>
+          <div class="details-row">
+            <span class="details-lbl">Delivery Slot</span>
+            <span class="details-val">${deliverySlot}</span>
+          </div>
+        `;
+      } else {
+        detailsBox.innerHTML = `
+          <div class="details-row">
+            <span class="details-lbl">Order ID</span>
+            <span class="details-val">${randomOrderId}</span>
+          </div>
+          <div class="details-row">
+            <span class="details-lbl">Table</span>
+            <span class="details-val">${selectedTableText}</span>
+          </div>
+          <div class="details-row">
+            <span class="details-lbl">Guest</span>
+            <span class="details-val">${guestName}</span>
+          </div>
+          <div class="details-row">
+            <span class="details-lbl">${activeBooking ? 'Reservation' : 'Est. Serve Time'}</span>
+            <span class="details-val">${activeBooking ? bookingTimeText : '15 - 25 Mins'}</span>
+          </div>
+        `;
+      }
 
       toggleCartDrawer(false);
 

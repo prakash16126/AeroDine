@@ -1,13 +1,14 @@
 # AeroDine — Premium Restaurant Landing Page
 
-AeroDine is a premium restaurant landing page built as a single HTML app. It showcases a modern menu experience for multi-cuisine dining, including Indian, regional, Chinese, Thai, continental, and desserts.
+AeroDine is a premium restaurant landing page built as a single HTML app. It showcases a modern menu experience for multi-cuisine dining, including Indian, regional, Chinese, Thai, continental, and desserts, with both dine-in and delivery ordering options.
 
 ## Features
 
 - **Premium Menu Display**: Rich menu cards with food categories, pricing, and order controls.
+- **Multi-mode Ordering**: Supports both dine-in table service and delivery checkout in the cart.
 - **Dessert Section Added**: Includes Chocolate Lava Cake, Mango Cheesecake, and Tiramisu Delight.
-- **Reservation Flow**: Book a table, select seating preferences, and optionally pre-order food.
-- **Order Cart**: Add items to cart, adjust quantities, and review totals before sending the order.
+- **Reservation Flow**: Book a table, choose seating preferences, and optionally pre-order food.
+- **Delivery Details**: Enter delivery address, instructions, and preferred delivery slot.
 - **Responsive UI**: Designed to work cleanly on desktop, tablet, and mobile screens.
 
 ## Getting Started
