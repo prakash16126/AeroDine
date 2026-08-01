@@ -1,19 +1,19 @@
-# AeroDine - Premium Indian Cloud Kitchen
+# AeroDine - Premium Multi-Cuisine Restaurant
 
-AeroDine is a premium Indian cloud kitchen website offering authentic Indian flavors prepared by master chefs. The application is designed to deliver hot, fresh meals in eco-friendly thermal packaging.
+AeroDine brings a premium multi-cuisine dining experience to the web. Explore elegant restaurant-style menu browsing, add dishes to your order, and enjoy a polished, mobile-friendly interface for modern food service.
 
 ## Features
 
-- **Gourmet Menu**: Handcrafted authentic Indian dishes.
-- **Premium User Interface**: Modern design with dark aesthetics, glassmorphism, and smooth animations.
-- **Interactive Experience**: Browse items, add to cart, and checkout seamlessly.
-- **Fully Responsive**: Optimized for desktop, tablet, and mobile devices.
+- **Premium Menu**: Indian, Chinese, Thai, regional, continental, and dessert offerings.
+- **Stylish UI**: Dark, glassmorphism-inspired design with smooth animations.
+- **Interactive Ordering**: Add dishes to your cart, adjust quantities, and preview the bill.
+- **Responsive Experience**: Designed for desktop, tablet, and mobile screens.
 
 ## Getting Started
 
 To view the website:
 1. Clone the repository:
    ```bash
-   git clone https://github.com/prakash16126/foodorder.git
+   git clone https://github.com/prakash16126/AeroDine.git
    ```
-2. Open [foodorder.html](file:///C:/PRAKASHS_FILES/foodorder/foodorder.html) in your browser.
+2. Open `foodorder.html` in your browser.
