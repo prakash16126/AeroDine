@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AeroDine | Premium Indian Cloud Kitchen</title>
-  <meta name="description" content="AeroDine - Authentic Indian flavours prepared by master chefs, delivered fresh and hot to your doorstep in eco-friendly thermal packaging.">
+  <title>AeroDine | Premium Multi-Cuisine Restaurant</title>
+  <meta name="description" content="AeroDine - A premium dining destination in Bengaluru serving regional Indian, Chinese, Thai, and continental cuisine in an elegant restaurant setting.">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1020,6 +1020,389 @@
     }
 
     /* ----------------------------------------------------
+       8b. DINE-IN & TABLE BOOKING
+       ---------------------------------------------------- */
+    .booking-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+      position: relative;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .booking-container {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .booking-form {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      padding: 2.5rem;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .booking-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .booking-form-grid .delivery-input-group {
+      margin-bottom: 0;
+    }
+
+    .booking-form-full {
+      grid-column: span 2;
+    }
+
+    .booking-form h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.75rem;
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      user-select: none;
+    }
+
+    .checkbox-container input {
+      accent-color: var(--accent-orange);
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .btn-booking {
+      width: 100%;
+      background: var(--accent-orange);
+      border: none;
+      color: #050510;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: var(--transition-core);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 15px rgba(255, 107, 53, 0.25);
+    }
+
+    .btn-booking:hover {
+      background: #e0531e;
+      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .booking-map-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      padding: 2.5rem;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .booking-map-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 1.5rem;
+      width: 100%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.75rem;
+    }
+
+    .map-legend {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .legend-dot.available {
+      background: var(--accent-green);
+    }
+
+    .legend-dot.reserved {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .legend-dot.selected {
+      background: var(--accent-orange);
+      box-shadow: 0 0 8px var(--accent-orange-glow);
+    }
+
+    .table-map-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+
+    .restaurant-table {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 1.25rem 0.75rem;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition-core);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .restaurant-table:hover {
+      border-color: rgba(255, 107, 53, 0.35);
+      background: rgba(255, 107, 53, 0.02);
+      transform: translateY(-3px);
+    }
+
+    .restaurant-table.selected {
+      border-color: var(--accent-orange);
+      background: rgba(255, 107, 53, 0.08);
+      box-shadow: 0 0 15px rgba(255, 107, 53, 0.15);
+    }
+
+    .restaurant-table.reserved {
+      background: rgba(255, 255, 255, 0.01);
+      border-color: rgba(255, 255, 255, 0.03);
+      color: rgba(255, 255, 255, 0.15);
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .table-num {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: white;
+    }
+
+    .restaurant-table.reserved .table-num {
+      color: rgba(255, 255, 255, 0.15);
+    }
+
+    .table-seats {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    .table-status-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .restaurant-table.available .table-status-label {
+      color: var(--accent-green);
+    }
+
+    .restaurant-table.reserved .table-status-label {
+      color: rgba(255, 255, 255, 0.15);
+    }
+
+    .restaurant-table.selected .table-status-label {
+      color: var(--accent-orange);
+    }
+
+    /* Cart Mode Toggle Switch */
+    .cart-mode-toggle {
+      display: flex;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--glass-border);
+      padding: 4px;
+      border-radius: 30px;
+      margin: 1rem 1.5rem 0.5rem 1.5rem;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .cart-mode-btn {
+      flex: 1;
+      text-align: center;
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      padding: 0.5rem 0;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--transition-core);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .cart-mode-btn:focus {
+      outline: none;
+    }
+
+    .cart-mode-btn.active {
+      background: var(--accent-orange);
+      color: #070a10;
+    }
+
+    /* ----------------------------------------------------
+       8c. ABOUT SECTION
+       ---------------------------------------------------- */
+    .about-section {
+      background: var(--bg-slate-dark);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 6rem 2rem;
+    }
+
+    .about-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-title span {
+      color: var(--accent-orange);
+      background: linear-gradient(135deg, #ff9f1c, var(--accent-orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .about-desc {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+
+    .about-stats {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .about-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .about-stat-num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent-orange);
+      letter-spacing: -1px;
+    }
+
+    .about-stat-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-secondary);
+    }
+
+    .about-promise-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .about-promise-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .about-promise-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .about-promise-item .promise-icon-box {
+      flex-shrink: 0;
+      margin-bottom: 0;
+    }
+
+    .about-promise-item h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 0.3rem;
+    }
+
+    .about-promise-item p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 868px) {
+      .about-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .about-title {
+        font-size: 2rem;
+      }
+    }
+
+    /* ----------------------------------------------------
        9. KEYFRAMES & ANIMATIONS
        ---------------------------------------------------- */
     @keyframes gentle-bob {
@@ -1078,6 +1461,10 @@
       .nav-menu {
         display: none;
       }
+      .booking-container {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
     }
 
     @media (max-width: 576px) {
@@ -1093,6 +1480,15 @@
       .cart-drawer-panel {
         max-width: 100%;
       }
+      .booking-form-grid {
+        grid-template-columns: 1fr;
+      }
+      .booking-form-full {
+        grid-column: span 1;
+      }
+      .table-map-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
   </style>
 </head>
@@ -1105,27 +1501,28 @@
   <nav>
     <div class="nav-container">
       <a href="#" class="logo-container">
-        <!-- Delivery Cloche Icon SVG -->
+        <!-- Restaurant Icon SVG -->
         <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M2 17h20" />
-          <path d="M6 17a6 6 0 0 1 12 0" />
-          <path d="M12 11V8a1 1 0 0 0-1-1H9.5a.5.5 0 0 1-.5-.5v-1A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5v1a.5.5 0 0 1-.5.5H13v3" />
+          <path d="M3 11h18" />
+          <path d="M5 11V5l4 2V5l4 2V5l4 2v6" />
+          <path d="M4 21h16" />
         </svg>
         <span class="logo-name">AeroDine</span>
       </a>
       
-      <ul class="nav-menu">
-        <li><a href="#" class="nav-link active">Home</a></li>
-        <li><a href="#menu-catalog" class="nav-link">Menu</a></li>
-        <li><a href="#tech-specs" class="nav-link">Delivery Promise</a></li>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#" class="nav-link" data-section="hero">Home</a></li>
+        <li><a href="#menu-catalog" class="nav-link" data-section="menu-catalog">Menu</a></li>
+        <li><a href="#dinein-booking" class="nav-link" data-section="dinein-booking">Reservations</a></li>
+        <li><a href="#about" class="nav-link" data-section="about">About</a></li>
       </ul>
 
-      <button class="cart-btn" onclick="toggleCartDrawer(true)" aria-label="Open Shopping Cart">
+      <button class="cart-btn" onclick="toggleCartDrawer(true)" aria-label="Open Order">
         <!-- Shopping Bag Icon -->
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path>
         </svg>
-        <span>Cart</span>
+        <span>Order</span>
         <span class="cart-badge" id="cart-item-count">0</span>
       </button>
     </div>
@@ -1135,17 +1532,17 @@
   <header class="hero">
     <div class="hero-content">
       <div class="premium-badge">
-        Fresh &amp; Fast Delivery
+        Fine Dining · Bengaluru
       </div>
       <h1 class="hero-title">
-        Gourmet Indian Flavours <span>Delivered Hot</span>
+        A World of Flavours <span>At Your Table</span>
       </h1>
       <p class="hero-subtitle">
-        Indulge in authentic regional recipes prepared by culinary masters. Sealed in secure, temperature-locking thermal pods and delivered safely to your home.
+        Step into AeroDine — a premium multi-cuisine restaurant where master chefs craft regional Indian, Chinese, Thai, and continental dishes, served fresh in an elegant dining space.
       </p>
       <div class="hero-actions">
-        <button class="btn-primary" onclick="scrollCatalog()">Order Now</button>
-        <button class="btn-outline" onclick="scrollSpecs()">Our Process</button>
+        <button class="btn-primary" onclick="scrollCatalog()">Explore Menu</button>
+        <button class="btn-outline" onclick="scrollBooking()">Book a Table</button>
       </div>
     </div>
 
@@ -1176,23 +1573,25 @@
   <section class="menu-section" id="menu-catalog">
     <div class="section-header">
       <h2 class="section-title">Explore Our Menu</h2>
-      <p class="section-subtitle">A curated choice of classics cooked fresh on order. Packed in spill-proof containers for smooth transport.</p>
+      <p class="section-subtitle">Explore flavours from across India and the world — regional classics, Indian favourites, Chinese, Thai, and continental dishes, all prepared fresh in our kitchen and served at your table.</p>
     </div>
 
-    <!-- Category Filter Tabs -->
+    <!-- Cuisine Filter Tabs -->
     <div class="menu-filters">
-      <button class="filter-btn active" onclick="filterMenu('all', this)">All Items</button>
-      <button class="filter-btn" onclick="filterMenu('starter', this)">Starters</button>
-      <button class="filter-btn" onclick="filterMenu('main', this)">Mains</button>
-      <button class="filter-btn" onclick="filterMenu('bread', this)">Breads &amp; Rice</button>
-      <button class="filter-btn" onclick="filterMenu('dessert', this)">Desserts</button>
+      <button class="filter-btn active" onclick="filterMenu('all', this)">All Cuisines</button>
+      <button class="filter-btn" onclick="filterMenu('regional', this)">Regional</button>
+      <button class="filter-btn" onclick="filterMenu('indian', this)">Indian</button>
+      <button class="filter-btn" onclick="filterMenu('chinese', this)">Chinese</button>
+      <button class="filter-btn" onclick="filterMenu('thai', this)">Thai</button>
+      <button class="filter-btn" onclick="filterMenu('continental', this)">Continental</button>
+      <button class="filter-btn" onclick="filterMenu('desserts', this)">Desserts</button>
     </div>
 
-    <!-- Responsive Cards Grid (10 items) -->
+    <!-- Responsive Cards Grid -->
     <div class="menu-grid" id="menu-grid">
       
       <!-- Item 1: Paneer Tikka -->
-      <div class="food-card" data-category="starter">
+      <div class="food-card" data-category="indian">
         <div class="food-image-frame">
           <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="100" cy="115" rx="70" ry="20" fill="rgba(0, 0, 0, 0.2)" />
@@ -1205,7 +1604,7 @@
         </div>
         <div class="food-info-body">
           <div class="food-meta">
-            <span class="food-category-label">Starter</span>
+            <span class="food-category-label">Indian</span>
             <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
           </div>
           <h3 class="food-name">Paneer Tikka</h3>
@@ -1213,14 +1612,14 @@
           <div class="food-footer">
             <span class="food-cost">₹260.00</span>
             <button class="btn-add-payload" onclick="addItemToPayload(1, 'Paneer Tikka', 260.00, 'veg')">
-              Add to Cart
+              Add to Order
             </button>
           </div>
         </div>
       </div>
 
       <!-- Item 2: Veg Samosa -->
-      <div class="food-card" data-category="starter">
+      <div class="food-card" data-category="indian">
         <div class="food-image-frame">
           <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="100" cy="125" rx="60" ry="15" fill="rgba(0,0,0,0.2)" />
@@ -1233,7 +1632,7 @@
         </div>
         <div class="food-info-body">
           <div class="food-meta">
-            <span class="food-category-label">Starter</span>
+            <span class="food-category-label">Indian</span>
             <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
           </div>
           <h3 class="food-name">Veg Samosa (2 Pcs)</h3>
@@ -1241,14 +1640,14 @@
           <div class="food-footer">
             <span class="food-cost">₹50.00</span>
             <button class="btn-add-payload" onclick="addItemToPayload(2, 'Veg Samosa (2 Pcs)', 50.00, 'veg')">
-              Add to Cart
+              Add to Order
             </button>
           </div>
         </div>
       </div>
 
       <!-- Item 3: Chicken Biryani -->
-      <div class="food-card" data-category="main">
+      <div class="food-card" data-category="regional">
         <div class="food-image-frame">
           <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="100" cy="120" rx="70" ry="25" fill="rgba(0,0,0,0.2)" />
@@ -1259,22 +1658,22 @@
         </div>
         <div class="food-info-body">
           <div class="food-meta">
-            <span class="food-category-label">Main Course</span>
+            <span class="food-category-label">Regional</span>
             <div class="india-diet-tag"><span class="nonveg-dot-border" title="Non-Vegetarian"></span></div>
           </div>
-          <h3 class="food-name">Chicken Biryani</h3>
-          <p class="food-description">Classic long-grain basmati rice cooked with saffron, Indian spices, and succulent marinated chicken chunks.</p>
+          <h3 class="food-name">Hyderabadi Chicken Biryani</h3>
+          <p class="food-description">Layered dum-style biryani from Hyderabad — fragrant basmati rice, saffron, and slow-cooked marinated chicken.</p>
           <div class="food-footer">
             <span class="food-cost">₹340.00</span>
-            <button class="btn-add-payload" onclick="addItemToPayload(3, 'Chicken Biryani', 340.00, 'nonveg')">
-              Add to Cart
+            <button class="btn-add-payload" onclick="addItemToPayload(3, 'Hyderabadi Chicken Biryani', 340.00, 'nonveg')">
+              Add to Order
             </button>
           </div>
         </div>
       </div>
 
       <!-- Item 4: Butter Chicken -->
-      <div class="food-card" data-category="main">
+      <div class="food-card" data-category="indian">
         <div class="food-image-frame">
           <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="100" cy="100" r="65" fill="rgba(0,0,0,0.2)" />
@@ -1285,7 +1684,7 @@
         </div>
         <div class="food-info-body">
           <div class="food-meta">
-            <span class="food-category-label">Main Course</span>
+            <span class="food-category-label">Indian</span>
             <div class="india-diet-tag"><span class="nonveg-dot-border" title="Non-Vegetarian"></span></div>
           </div>
           <h3 class="food-name">Butter Chicken</h3>
@@ -1293,14 +1692,14 @@
           <div class="food-footer">
             <span class="food-cost">₹360.00</span>
             <button class="btn-add-payload" onclick="addItemToPayload(4, 'Butter Chicken', 360.00, 'nonveg')">
-              Add to Cart
+              Add to Order
             </button>
           </div>
         </div>
       </div>
 
       <!-- Item 5: Paneer Butter Masala -->
-      <div class="food-card" data-category="main">
+      <div class="food-card" data-category="indian">
         <div class="food-image-frame">
           <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="100" cy="100" r="65" fill="rgba(0,0,0,0.2)" />
@@ -1312,7 +1711,7 @@
         </div>
         <div class="food-info-body">
           <div class="food-meta">
-            <span class="food-category-label">Main Course</span>
+            <span class="food-category-label">Indian</span>
             <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
           </div>
           <h3 class="food-name">Paneer Butter Masala</h3>
@@ -1320,14 +1719,14 @@
           <div class="food-footer">
             <span class="food-cost">₹280.00</span>
             <button class="btn-add-payload" onclick="addItemToPayload(5, 'Paneer Butter Masala', 280.00, 'veg')">
-              Add to Cart
+              Add to Order
             </button>
           </div>
         </div>
       </div>
 
       <!-- Item 6: Dal Makhani -->
-      <div class="food-card" data-category="main">
+      <div class="food-card" data-category="indian">
         <div class="food-image-frame">
           <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="100" cy="100" r="65" fill="rgba(0,0,0,0.2)" />
@@ -1338,7 +1737,7 @@
         </div>
         <div class="food-info-body">
           <div class="food-meta">
-            <span class="food-category-label">Main Course</span>
+            <span class="food-category-label">Indian</span>
             <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
           </div>
           <h3 class="food-name">Dal Makhani</h3>
@@ -1346,14 +1745,14 @@
           <div class="food-footer">
             <span class="food-cost">₹220.00</span>
             <button class="btn-add-payload" onclick="addItemToPayload(6, 'Dal Makhani', 220.00, 'veg')">
-              Add to Cart
+              Add to Order
             </button>
           </div>
         </div>
       </div>
 
       <!-- Item 7: Butter Naan -->
-      <div class="food-card" data-category="bread">
+      <div class="food-card" data-category="indian">
         <div class="food-image-frame">
           <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="100" cy="105" rx="65" ry="40" fill="#ffd8be" stroke="#d4a373" stroke-width="2" transform="rotate(-15 100 105)" />
@@ -1362,7 +1761,7 @@
         </div>
         <div class="food-info-body">
           <div class="food-meta">
-            <span class="food-category-label">Bread</span>
+            <span class="food-category-label">Indian</span>
             <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
           </div>
           <h3 class="food-name">Butter Naan</h3>
@@ -1370,14 +1769,14 @@
           <div class="food-footer">
             <span class="food-cost">₹60.00</span>
             <button class="btn-add-payload" onclick="addItemToPayload(7, 'Butter Naan', 60.00, 'veg')">
-              Add to Cart
+              Add to Order
             </button>
           </div>
         </div>
       </div>
 
       <!-- Item 8: Garlic Naan -->
-      <div class="food-card" data-category="bread">
+      <div class="food-card" data-category="indian">
         <div class="food-image-frame">
           <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="100" cy="105" rx="65" ry="40" fill="#ffd8be" stroke="#d4a373" stroke-width="2" transform="rotate(-15 100 105)" />
@@ -1388,7 +1787,7 @@
         </div>
         <div class="food-info-body">
           <div class="food-meta">
-            <span class="food-category-label">Bread</span>
+            <span class="food-category-label">Indian</span>
             <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
           </div>
           <h3 class="food-name">Garlic Naan</h3>
@@ -1396,14 +1795,14 @@
           <div class="food-footer">
             <span class="food-cost">₹70.00</span>
             <button class="btn-add-payload" onclick="addItemToPayload(8, 'Garlic Naan', 70.00, 'veg')">
-              Add to Cart
+              Add to Order
             </button>
           </div>
         </div>
       </div>
 
       <!-- Item 9: Jeera Rice -->
-      <div class="food-card" data-category="bread">
+      <div class="food-card" data-category="indian">
         <div class="food-image-frame">
           <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="100" cy="120" rx="70" ry="25" fill="rgba(0,0,0,0.2)" />
@@ -1417,7 +1816,7 @@
         </div>
         <div class="food-info-body">
           <div class="food-meta">
-            <span class="food-category-label">Rice</span>
+            <span class="food-category-label">Indian</span>
             <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
           </div>
           <h3 class="food-name">Jeera Rice</h3>
@@ -1425,14 +1824,14 @@
           <div class="food-footer">
             <span class="food-cost">₹140.00</span>
             <button class="btn-add-payload" onclick="addItemToPayload(9, 'Jeera Rice', 140.00, 'veg')">
-              Add to Cart
+              Add to Order
             </button>
           </div>
         </div>
       </div>
 
       <!-- Item 10: Gulab Jamun -->
-      <div class="food-card" data-category="dessert">
+      <div class="food-card" data-category="indian">
         <div class="food-image-frame">
           <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="100" cy="120" rx="60" ry="15" fill="rgba(0,0,0,0.2)" />
@@ -1443,7 +1842,7 @@
         </div>
         <div class="food-info-body">
           <div class="food-meta">
-            <span class="food-category-label">Dessert</span>
+            <span class="food-category-label">Indian</span>
             <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
           </div>
           <h3 class="food-name">Gulab Jamun (2 Pcs)</h3>
@@ -1451,8 +1850,407 @@
           <div class="food-footer">
             <span class="food-cost">₹70.00</span>
             <button class="btn-add-payload" onclick="addItemToPayload(10, 'Gulab Jamun (2 Pcs)', 70.00, 'veg')">
-              Add to Cart
+              Add to Order
             </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 11: Masala Dosa -->
+      <div class="food-card" data-category="regional">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="120" rx="75" ry="18" fill="rgba(0,0,0,0.2)" />
+            <ellipse cx="100" cy="100" rx="70" ry="35" fill="#e9c46a" stroke="#d4a373" stroke-width="2" />
+            <path d="M45 100 Q100 75 155 100" stroke="#ffd166" stroke-width="4" fill="none" />
+            <circle cx="130" cy="85" r="8" fill="#2a9d8f" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Regional</span>
+            <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Masala Dosa</h3>
+          <p class="food-description">Crisp South Indian crepe filled with spiced potato masala, served with coconut chutney and sambar.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹180.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(11, 'Masala Dosa', 180.00, 'veg')">Add to Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 12: Chettinad Chicken -->
+      <div class="food-card" data-category="regional">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="65" fill="rgba(0,0,0,0.2)" />
+            <path d="M50 110C50 110 52 145 100 145C148 145 150 110 150 110H50Z" fill="#212529" stroke="#e0531e" stroke-width="1.5" />
+            <ellipse cx="100" cy="108" rx="46" ry="14" fill="#8b4513" />
+            <circle cx="85" cy="105" r="2" fill="#ff6b35" />
+            <circle cx="110" cy="102" r="2" fill="#ff6b35" />
+            <circle cx="100" cy="98" r="2" fill="#ff6b35" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Regional</span>
+            <div class="india-diet-tag"><span class="nonveg-dot-border" title="Non-Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Chettinad Chicken</h3>
+          <p class="food-description">Fiery Tamil Nadu specialty — chicken slow-cooked in roasted spices, curry leaves, and black pepper.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹320.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(12, 'Chettinad Chicken', 320.00, 'nonveg')">Add to Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 13: Kerala Fish Curry -->
+      <div class="food-card" data-category="regional">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="65" fill="rgba(0,0,0,0.2)" />
+            <path d="M50 110C50 110 52 145 100 145C148 145 150 110 150 110H50Z" fill="#1b1d28" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+            <ellipse cx="100" cy="108" rx="46" ry="14" fill="#e76f51" />
+            <path d="M70 108 Q100 95 130 108" stroke="#ffd166" stroke-width="3" fill="none" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Regional</span>
+            <div class="india-diet-tag"><span class="nonveg-dot-border" title="Non-Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Kerala Fish Curry</h3>
+          <p class="food-description">Coastal Kerala classic — seer fish simmered in tangy tamarind and coconut milk gravy with curry leaves.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹380.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(13, 'Kerala Fish Curry', 380.00, 'nonveg')">Add to Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 14: Veg Manchurian -->
+      <div class="food-card" data-category="chinese">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="65" fill="rgba(0,0,0,0.2)" />
+            <path d="M50 110C50 110 52 145 100 145C148 145 150 110 150 110H50Z" fill="#212529" stroke="#ef4444" stroke-width="1.5" />
+            <circle cx="80" cy="100" r="12" fill="#4ade80" />
+            <circle cx="110" cy="95" r="10" fill="#4ade80" />
+            <circle cx="95" cy="115" r="9" fill="#4ade80" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Chinese</span>
+            <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Veg Manchurian</h3>
+          <p class="food-description">Crispy vegetable balls tossed in a glossy Indo-Chinese sauce with garlic, ginger, and spring onions.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹240.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(14, 'Veg Manchurian', 240.00, 'veg')">Add to Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 15: Chicken Fried Rice -->
+      <div class="food-card" data-category="chinese">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="120" rx="70" ry="25" fill="rgba(0,0,0,0.2)" />
+            <path d="M50 100C50 100 55 140 100 140C145 140 150 100 150 100H50Z" fill="#1b1d28" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+            <ellipse cx="100" cy="98" rx="46" ry="14" fill="#fef3c7" />
+            <rect x="75" y="94" width="6" height="6" fill="#4ade80" transform="rotate(20 75 94)" />
+            <rect x="105" y="96" width="5" height="5" fill="#f87171" transform="rotate(10 105 96)" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Chinese</span>
+            <div class="india-diet-tag"><span class="nonveg-dot-border" title="Non-Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Chicken Fried Rice</h3>
+          <p class="food-description">Wok-tossed jasmine rice with tender chicken, scrambled egg, capsicum, and soy-sesame seasoning.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹260.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(15, 'Chicken Fried Rice', 260.00, 'nonveg')">Add to Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 16: Hakka Noodles -->
+      <div class="food-card" data-category="chinese">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="120" rx="70" ry="25" fill="rgba(0,0,0,0.2)" />
+            <path d="M50 100C50 100 55 140 100 140C145 140 150 100 150 100H50Z" fill="#1b1d28" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+            <path d="M60 95 Q80 110 100 95 Q120 80 140 95" stroke="#fde68a" stroke-width="3" fill="none" />
+            <path d="M65 105 Q85 120 105 105 Q125 90 145 105" stroke="#fde68a" stroke-width="3" fill="none" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Chinese</span>
+            <div class="india-diet-tag"><span class="nonveg-dot-border" title="Non-Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Hakka Noodles</h3>
+          <p class="food-description">Silky stir-fried noodles with chicken, crunchy vegetables, and a smoky wok-hei finish.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹280.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(16, 'Hakka Noodles', 280.00, 'nonveg')">Add to Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 17: Chilli Chicken -->
+      <div class="food-card" data-category="chinese">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="65" fill="rgba(0,0,0,0.2)" />
+            <path d="M50 110C50 110 52 145 100 145C148 145 150 110 150 110H50Z" fill="#212529" stroke="#ef4444" stroke-width="1.5" />
+            <ellipse cx="100" cy="108" rx="46" ry="14" fill="#dc2626" />
+            <circle cx="88" cy="102" r="4" fill="#f87171" />
+            <circle cx="112" cy="106" r="4" fill="#f87171" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Chinese</span>
+            <div class="india-diet-tag"><span class="nonveg-dot-border" title="Non-Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Chilli Chicken</h3>
+          <p class="food-description">Batter-fried chicken tossed in a spicy, sweet-and-sour sauce with bell peppers and green chillies.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹300.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(17, 'Chilli Chicken', 300.00, 'nonveg')">Add to Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 18: Pad Thai -->
+      <div class="food-card" data-category="thai">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="120" rx="70" ry="25" fill="rgba(0,0,0,0.2)" />
+            <path d="M50 100C50 100 55 140 100 140C145 140 150 100 150 100H50Z" fill="#1b1d28" stroke="#fbbf24" stroke-width="1.5" />
+            <path d="M60 95 Q80 110 100 95 Q120 80 140 95" stroke="#fde68a" stroke-width="3" fill="none" />
+            <circle cx="120" cy="88" r="6" fill="#f87171" />
+            <circle cx="85" cy="92" r="4" fill="#4ade80" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Thai</span>
+            <div class="india-diet-tag"><span class="nonveg-dot-border" title="Non-Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Pad Thai</h3>
+          <p class="food-description">Bangkok street-style rice noodles with prawns, tamarind, peanuts, bean sprouts, and lime.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹320.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(18, 'Pad Thai', 320.00, 'nonveg')">Add to Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 19: Thai Green Curry -->
+      <div class="food-card" data-category="thai">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="65" fill="rgba(0,0,0,0.2)" />
+            <path d="M50 110C50 110 52 145 100 145C148 145 150 110 150 110H50Z" fill="#212529" stroke="#22c55e" stroke-width="1.5" />
+            <ellipse cx="100" cy="108" rx="46" ry="14" fill="#16a34a" />
+            <circle cx="90" cy="104" r="3" fill="#4ade80" />
+            <circle cx="110" cy="106" r="3" fill="#bbf7d0" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Thai</span>
+            <div class="india-diet-tag"><span class="nonveg-dot-border" title="Non-Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Thai Green Curry</h3>
+          <p class="food-description">Aromatic coconut curry with chicken, Thai basil, bamboo shoots, and fresh green chilli paste.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹340.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(19, 'Thai Green Curry', 340.00, 'nonveg')">Add to Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 20: Tom Yum Soup -->
+      <div class="food-card" data-category="thai">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="120" rx="60" ry="15" fill="rgba(0,0,0,0.2)" />
+            <path d="M60 100C60 100 62 135 100 135C138 135 140 100 140 100H60Z" fill="rgba(255,255,255,0.04)" stroke="#fbbf24" stroke-width="1.5" />
+            <ellipse cx="100" cy="98" rx="36" ry="10" fill="#fef3c7" opacity="0.8" />
+            <circle cx="90" cy="95" r="3" fill="#f87171" />
+            <circle cx="108" cy="97" r="2" fill="#4ade80" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Thai</span>
+            <div class="india-diet-tag"><span class="nonveg-dot-border" title="Non-Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Tom Yum Soup</h3>
+          <p class="food-description">Hot and sour Thai broth with prawns, lemongrass, galangal, kaffir lime leaves, and mushrooms.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹220.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(20, 'Tom Yum Soup', 220.00, 'nonveg')">Add to Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 21: Grilled Chicken Steak -->
+      <div class="food-card" data-category="continental">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="120" rx="70" ry="20" fill="rgba(0,0,0,0.2)" />
+            <ellipse cx="100" cy="100" rx="55" ry="30" fill="#92400e" stroke="#78350f" stroke-width="2" />
+            <path d="M70 95 Q100 85 130 95" stroke="#451a03" stroke-width="2" fill="none" />
+            <rect x="130" y="75" width="8" height="25" rx="2" fill="#4ade80" transform="rotate(15 130 75)" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Continental</span>
+            <div class="india-diet-tag"><span class="nonveg-dot-border" title="Non-Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Grilled Chicken Steak</h3>
+          <p class="food-description">Char-grilled chicken breast with herb butter, mashed potatoes, and seasonal grilled vegetables.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹420.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(21, 'Grilled Chicken Steak', 420.00, 'nonveg')">Add to Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 22: Pasta Alfredo -->
+      <div class="food-card" data-category="continental">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="120" rx="70" ry="25" fill="rgba(0,0,0,0.2)" />
+            <path d="M50 100C50 100 55 140 100 140C145 140 150 100 150 100H50Z" fill="#1b1d28" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+            <path d="M60 95 Q80 110 100 95 Q120 80 140 95" stroke="#fef3c7" stroke-width="4" fill="none" />
+            <path d="M65 105 Q85 120 105 105 Q125 90 145 105" stroke="#fef3c7" stroke-width="4" fill="none" />
+            <circle cx="100" cy="88" r="4" fill="#fde68a" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Continental</span>
+            <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Pasta Alfredo</h3>
+          <p class="food-description">Creamy fettuccine in a rich parmesan and garlic sauce, finished with cracked black pepper.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹300.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(22, 'Pasta Alfredo', 300.00, 'veg')">Add to Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 23: Margherita Pizza -->
+      <div class="food-card" data-category="continental">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="120" rx="65" ry="15" fill="rgba(0,0,0,0.2)" />
+            <circle cx="100" cy="95" r="55" fill="#fde68a" stroke="#d97706" stroke-width="2" />
+            <circle cx="85" cy="88" r="8" fill="#ef4444" />
+            <circle cx="115" cy="92" r="7" fill="#ef4444" />
+            <circle cx="100" cy="105" r="6" fill="#ef4444" />
+            <path d="M75 95 Q100 80 125 95" stroke="#fef3c7" stroke-width="3" fill="none" opacity="0.6" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Continental</span>
+            <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Margherita Pizza</h3>
+          <p class="food-description">Wood-fired thin crust with San Marzano tomato sauce, fresh mozzarella, and basil leaves.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹350.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(23, 'Margherita Pizza', 350.00, 'veg')">Add to Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dessert Item 24: Chocolate Lava Cake -->
+      <div class="food-card" data-category="desserts">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="130" rx="60" ry="18" fill="rgba(0,0,0,0.2)" />
+            <path d="M60 105 C60 105 65 85 100 85 C135 85 140 105 140 105 Z" fill="#3f2b26" stroke="#623d2d" stroke-width="2" />
+            <path d="M88 90 C88 90 92 80 100 80 C108 80 112 90 112 90" stroke="#ffca3a" stroke-width="4" fill="none" />
+            <circle cx="90" cy="100" r="6" fill="#ff7b72" />
+            <circle cx="110" cy="100" r="6" fill="#ff7b72" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Desserts</span>
+            <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Chocolate Lava Cake</h3>
+          <p class="food-description">Warm chocolate cake with a gooey molten center, served with vanilla ice cream and berry coulis.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹220.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(24, 'Chocolate Lava Cake', 220.00, 'veg')">Add to Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dessert Item 25: Mango Cheesecake -->
+      <div class="food-card" data-category="desserts">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="135" rx="62" ry="18" fill="rgba(0,0,0,0.2)" />
+            <path d="M50 105 C50 105 50 80 100 80 C150 80 150 105 150 105 Z" fill="#fcd34d" stroke="#f59e0b" stroke-width="2" />
+            <path d="M55 105 L145 105 L145 120 C145 120 125 130 100 130 C75 130 55 120 55 120 Z" fill="#fef3c7" />
+            <circle cx="80" cy="95" r="6" fill="#fb923c" />
+            <circle cx="120" cy="95" r="6" fill="#fb923c" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Desserts</span>
+            <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Mango Cheesecake</h3>
+          <p class="food-description">Creamy cheesecake topped with fresh Alphonso mango slices and a crunchy graham cracker crust.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹260.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(25, 'Mango Cheesecake', 260.00, 'veg')">Add to Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dessert Item 26: Tiramisu Delight -->
+      <div class="food-card" data-category="desserts">
+        <div class="food-image-frame">
+          <svg class="food-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="130" rx="60" ry="18" fill="rgba(0,0,0,0.2)" />
+            <rect x="55" y="95" width="90" height="40" rx="12" fill="#f3f4f6" stroke="#d1d5db" stroke-width="2" />
+            <path d="M55 110 H145" stroke="#a16207" stroke-width="3" />
+            <path d="M55 120 H145" stroke="#a16207" stroke-width="3" />
+            <circle cx="78" cy="108" r="5" fill="#ef4444" />
+            <circle cx="122" cy="108" r="5" fill="#ef4444" />
+          </svg>
+        </div>
+        <div class="food-info-body">
+          <div class="food-meta">
+            <span class="food-category-label">Desserts</span>
+            <div class="india-diet-tag"><span class="veg-dot-border" title="Vegetarian"></span></div>
+          </div>
+          <h3 class="food-name">Tiramisu Delight</h3>
+          <p class="food-description">Classic Italian tiramisu layered with espresso-soaked ladyfingers and mascarpone cream dusted with cocoa.</p>
+          <div class="food-footer">
+            <span class="food-cost">₹240.00</span>
+            <button class="btn-add-payload" onclick="addItemToPayload(26, 'Tiramisu Delight', 240.00, 'veg')">Add to Order</button>
           </div>
         </div>
       </div>
@@ -1460,48 +2258,147 @@
     </div>
   </section>
 
-  <!-- Technical Delivery Promise Section -->
-  <section class="delivery-promise-section" id="tech-specs">
+  <!-- Dine-In & Table Booking Section -->
+  <section class="booking-section" id="dinein-booking">
     <div class="section-header">
-      <h2 class="section-title">Our Delivery Promise</h2>
-      <p class="section-subtitle">Premium food requires reliable transport. Here is how we ensure quality gets to your door.</p>
+      <h2 class="section-title">Reserve Your Table</h2>
+      <p class="section-subtitle">Plan your visit to AeroDine. Choose your preferred table, pick a time slot, and optionally pre-order dishes for a seamless dining experience.</p>
     </div>
-    
-    <div class="promise-grid">
-      <div class="promise-card">
-        <div class="promise-icon-box">
-          <!-- Flame icon -->
-          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.25 8.25 0 015.362-4.386z"></path>
-          </svg>
-        </div>
-        <h3>Triple-Layer Thermal Insulation</h3>
-        <p>Your food is sealed in food-grade insulated bags that lock in heat, maintaining kitchen-fresh temperatures up to 45 minutes.</p>
-      </div>
 
-      <div class="promise-card">
-        <div class="promise-icon-box">
-          <!-- Check icon -->
-          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-          </svg>
+    <div class="booking-container">
+      <!-- Left side: Booking Form -->
+      <form class="booking-form" onsubmit="event.preventDefault(); submitBooking();">
+        <h3>Reservation Details</h3>
+        
+        <div class="booking-form-grid">
+          <div class="delivery-input-group">
+            <label class="delivery-label" for="book-name">Full Name</label>
+            <input type="text" class="delivery-input" id="book-name" required placeholder="e.g. John Doe">
+          </div>
+          <div class="delivery-input-group">
+            <label class="delivery-label" for="book-phone">Mobile Number</label>
+            <input type="tel" class="delivery-input" id="book-phone" required placeholder="e.g. +91 98765 43210">
+          </div>
+          <div class="delivery-input-group">
+            <label class="delivery-label" for="book-date">Date</label>
+            <input type="date" class="delivery-input" id="book-date" required>
+          </div>
+          <div class="delivery-input-group">
+            <label class="delivery-label" for="book-time">Time Slot</label>
+            <select class="delivery-input" id="book-time" required style="background: rgba(11, 15, 25, 0.95); cursor: pointer;">
+              <option value="" disabled selected>Select time slot</option>
+              <option value="12:00 PM - 01:30 PM">12:00 PM - 01:30 PM</option>
+              <option value="01:30 PM - 03:00 PM">01:30 PM - 03:00 PM</option>
+              <option value="07:00 PM - 08:30 PM">07:00 PM - 08:30 PM</option>
+              <option value="08:30 PM - 10:00 PM">08:30 PM - 10:00 PM</option>
+              <option value="10:00 PM - 11:30 PM">10:00 PM - 11:30 PM</option>
+            </select>
+          </div>
+          <div class="delivery-input-group booking-form-full">
+            <label class="delivery-label" for="book-guests">Number of Guests</label>
+            <select class="delivery-input" id="book-guests" required style="background: rgba(11, 15, 25, 0.95); cursor: pointer;" onchange="autoFilterTables(this.value)">
+              <option value="2">2 Guests</option>
+              <option value="4" selected>3-4 Guests</option>
+              <option value="6">5-6 Guests</option>
+              <option value="8">7-8 Guests</option>
+            </select>
+          </div>
         </div>
-        <h3>Spill-Proof Packaging</h3>
-        <p>Curries and gravies are locked in double-walled, induction-sealed containers designed to avoid leakages during active transit.</p>
-      </div>
 
-      <div class="promise-card">
-        <div class="promise-icon-box">
-          <!-- Clock icon -->
-          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-          </svg>
+        <div class="booking-form-full" style="margin-bottom: 1.5rem;">
+          <label class="checkbox-container">
+            <input type="checkbox" id="book-preorder" onchange="togglePreorderPrompt(this.checked)">
+            <span>Pre-order food for your reservation (optional)</span>
+          </label>
         </div>
-        <h3>Swift Local Delivery</h3>
-        <p>Operating dedicated regional delivery riders to guarantee your order reaches you within the promised time window.</p>
+
+        <button type="submit" class="btn-booking" id="btn-submit-booking">
+          Confirm Reservation
+        </button>
+      </form>
+
+      <!-- Right side: Visual Interactive Table Map -->
+      <div class="booking-map-card">
+        <h3>Choose Your Table</h3>
+        
+        <!-- Map Legend -->
+        <div class="map-legend">
+          <div class="legend-item">
+            <div class="legend-dot available"></div>
+            <span>Available</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot reserved"></div>
+            <span>Reserved</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot selected"></div>
+            <span>Selected</span>
+          </div>
+        </div>
+
+        <!-- Table Grid -->
+        <div class="table-map-grid" id="table-map-grid">
+          <!-- Table 1 -->
+          <div class="restaurant-table available" data-table="1" data-capacity="2" onclick="selectTableUI(1)">
+            <span class="table-num">T1</span>
+            <span class="table-seats">2 Seater</span>
+            <span class="table-status-label">Available</span>
+          </div>
+          <!-- Table 2 -->
+          <div class="restaurant-table reserved" data-table="2" data-capacity="2">
+            <span class="table-num">T2</span>
+            <span class="table-seats">2 Seater</span>
+            <span class="table-status-label">Reserved</span>
+          </div>
+          <!-- Table 3 -->
+          <div class="restaurant-table available" data-table="3" data-capacity="4" onclick="selectTableUI(3)">
+            <span class="table-num">T3</span>
+            <span class="table-seats">4 Seater</span>
+            <span class="table-status-label">Available</span>
+          </div>
+          <!-- Table 4 (Window View) -->
+          <div class="restaurant-table available selected" data-table="4" data-capacity="4" onclick="selectTableUI(4)">
+            <span class="table-num">T4</span>
+            <span class="table-seats">4 Seater (Window)</span>
+            <span class="table-status-label">Selected</span>
+          </div>
+          <!-- Table 5 -->
+          <div class="restaurant-table reserved" data-table="5" data-capacity="6">
+            <span class="table-num">T5</span>
+            <span class="table-seats">6 Seater</span>
+            <span class="table-status-label">Reserved</span>
+          </div>
+          <!-- Table 6 (Lounge) -->
+          <div class="restaurant-table available" data-table="6" data-capacity="6" onclick="selectTableUI(6)">
+            <span class="table-num">T6</span>
+            <span class="table-seats">6 Seater (Lounge)</span>
+            <span class="table-status-label">Available</span>
+          </div>
+          <!-- Table 7 -->
+          <div class="restaurant-table available" data-table="7" data-capacity="8" onclick="selectTableUI(7)">
+            <span class="table-num">T7</span>
+            <span class="table-seats">8 Seater</span>
+            <span class="table-status-label">Available</span>
+          </div>
+          <!-- Table 8 -->
+          <div class="restaurant-table reserved" data-table="8" data-capacity="8">
+            <span class="table-num">T8</span>
+            <span class="table-seats">8 Seater (Lounge)</span>
+            <span class="table-status-label">Reserved</span>
+          </div>
+          <!-- Table 9 -->
+          <div class="restaurant-table available" data-table="9" data-capacity="4" onclick="selectTableUI(9)">
+            <span class="table-num">T9</span>
+            <span class="table-seats">4 Seater</span>
+            <span class="table-status-label">Available</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+
+
 
   <!-- Sticky/Floating Cart Sidebar -->
   <div class="cart-drawer-overlay" id="cart-drawer" onclick="toggleCartDrawer(false)">
@@ -1511,7 +2408,7 @@
           <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path>
           </svg>
-          Your Shopping Cart
+          Your Order
         </h2>
         <button class="btn-close-drawer" onclick="toggleCartDrawer(false)" aria-label="Close Cart">
           <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1526,7 +2423,7 @@
           <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path>
           </svg>
-          <p>Your cart is empty.</p>
+          <p>Your order is empty. Browse the menu to add dishes.</p>
         </div>
       </div>
 
@@ -1536,13 +2433,14 @@
           <span>Item Total</span>
           <span id="bill-subtotal">₹0.00</span>
         </div>
-        <div class="cart-bill-row">
-          <span>Delivery Partner Fee</span>
-          <span>₹40.00</span>
-        </div>
         <div class="cart-bill-row total-price-row">
           <span>Grand Total</span>
           <span class="final-cost-val" id="bill-total">₹0.00</span>
+        </div>
+
+        <div class="delivery-input-group">
+          <label class="delivery-label" for="guest-name">Guest Name</label>
+          <input type="text" class="delivery-input" id="guest-name" placeholder="e.g. John Doe">
         </div>
 
         <div class="delivery-input-group">
@@ -1550,13 +2448,20 @@
           <input type="tel" class="delivery-input" id="delivery-phone" placeholder="e.g. +91 98765 43210" value="+91 98765 43210">
         </div>
 
-        <div class="delivery-input-group">
-          <label class="delivery-label" for="dock-id">Delivery Address</label>
-          <input type="text" class="delivery-input" id="dock-id" placeholder="Enter full address" value="Flat 402, Block A, Green Glen Layout, Bengaluru">
+        <div class="delivery-input-group" id="dinein-table-group">
+          <label class="delivery-label" for="cart-table-select">Select Table</label>
+          <select class="delivery-input" id="cart-table-select" style="background: rgba(11, 15, 25, 0.95); cursor: pointer;" onchange="updateCartTable(this.value)">
+            <option value="4" selected>Table 4 (4 Seater - Window)</option>
+            <option value="1">Table 1 (2 Seater)</option>
+            <option value="3">Table 3 (4 Seater)</option>
+            <option value="6">Table 6 (6 Seater - Lounge)</option>
+            <option value="7">Table 7 (8 Seater)</option>
+            <option value="9">Table 9 (4 Seater)</option>
+          </select>
         </div>
 
         <button class="btn-place-order" id="btn-place-order" onclick="initiateLaunch()" disabled>
-          Place Order
+          Send Order to Kitchen
         </button>
       </div>
     </div>
@@ -1569,9 +2474,9 @@
       <svg class="success-delivery-icon" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
       </svg>
-      <h3 class="success-modal-title">Order Placed Successfully!</h3>
+      <h3 class="success-modal-title">Order Sent to Kitchen!</h3>
       <p class="success-modal-desc">
-        We have received your order. Our kitchen team has started preparing your dishes fresh. A delivery partner will assign shortly.
+        Your order has been received. Our chefs are preparing your dishes — they will be served fresh at your table shortly.
       </p>
       
       <div class="success-details-box">
@@ -1580,12 +2485,12 @@
           <span class="details-val" id="success-order-id">#AD-84920</span>
         </div>
         <div class="details-row">
-          <span class="details-lbl">Est. Delivery Time</span>
-          <span class="details-val">35 - 45 Mins</span>
+          <span class="details-lbl">Table</span>
+          <span class="details-val" id="success-table">Table T4</span>
         </div>
         <div class="details-row">
-          <span class="details-lbl">Deliver To</span>
-          <span class="details-val" id="success-address">Green Glen Layout, Bengaluru</span>
+          <span class="details-lbl">Est. Serve Time</span>
+          <span class="details-val">15 - 25 Mins</span>
         </div>
       </div>
 
@@ -1595,24 +2500,92 @@
     </div>
   </div>
 
+  <!-- About Section (replaces standalone Delivery Promise) -->
+  <section class="about-section" id="about">
+    <div class="about-inner">
+      <!-- Left: brand identity -->
+      <div class="about-brand">
+        <div class="premium-badge" style="margin-bottom:1.2rem;">About AeroDine</div>
+        <h2 class="about-title">Crafted with Passion,<br><span>Served with Care</span></h2>
+        <p class="about-desc">AeroDine is Bengaluru's destination for multi-cuisine fine dining. From Hyderabadi biryani to Pad Thai and continental classics, every dish is prepared by master chefs in our open kitchen and served in a warm, elegant ambiance.</p>
+        <div class="about-stats">
+          <div class="about-stat">
+            <span class="about-stat-num">50+</span>
+            <span class="about-stat-label">Signature Dishes</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-num">4.9★</span>
+            <span class="about-stat-label">Guest Rating</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-num">5</span>
+            <span class="about-stat-label">Cuisine Styles</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Restaurant experience cards -->
+      <div class="about-promise">
+        <h3 class="about-promise-title">The AeroDine Experience</h3>
+        <div class="about-promise-list">
+          <div class="about-promise-item">
+            <div class="promise-icon-box">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.25 8.25 0 015.362-4.386z"></path>
+              </svg>
+            </div>
+            <div>
+              <h4>Elegant Ambiance</h4>
+              <p>Warm lighting, comfortable seating, and a refined atmosphere for every occasion.</p>
+            </div>
+          </div>
+          <div class="about-promise-item">
+            <div class="promise-icon-box">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+            </div>
+            <div>
+              <h4>Open Kitchen</h4>
+              <p>Watch our chefs craft every dish fresh — from tandoor to wok to the pass.</p>
+            </div>
+          </div>
+          <div class="about-promise-item">
+            <div class="promise-icon-box">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <div>
+              <h4>Open Daily · 12 PM – 11:30 PM</h4>
+              <p>Green Glen Layout, Bengaluru — walk-ins welcome, reservations recommended on weekends.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer>
     <div class="footer-container">
       <a href="#" class="footer-logo-box">
         <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="2.2">
-          <path d="M2 17h20" />
-          <path d="M6 17a6 6 0 0 1 12 0" />
-          <path d="M12 11V8a1 1 0 0 0-1-1H9.5a.5.5 0 0 1-.5-.5v-1A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5v1a.5.5 0 0 1-.5.5H13v3" />
+          <path d="M3 11h18" />
+          <path d="M5 11V5l4 2V5l4 2V5l4 2v6" />
+          <path d="M4 21h16" />
         </svg>
-        <span class="footer-logo-name">AeroDine Kitchen</span>
+        <span class="footer-logo-name">AeroDine Restaurant</span>
       </a>
       <p style="font-size: 0.85rem; color: var(--text-secondary); max-width: 480px; text-align: center; line-height: 1.5;">
-        Premium ingredients, absolute hygiene, and eco-friendly temperature-locked containers.
+        42, Green Glen Layout, Bengaluru · Open daily 12:00 PM – 11:30 PM · +91 98765 43210
       </p>
       <ul class="footer-links-list">
         <li><a href="#">Privacy Policy</a></li>
         <li><a href="#">Terms of Service</a></li>
         <li><a href="#menu-catalog">Menu</a></li>
+        <li><a href="#dinein-booking">Reservations</a></li>
+        <li><a href="#about">About</a></li>
       </ul>
       <div class="footer-copyright">
         &copy; 2026 AeroDine Foods Pvt Ltd. All rights reserved.
@@ -1630,7 +2603,207 @@
     }
     
     function scrollSpecs() {
-      document.getElementById('tech-specs').scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('tech-specs') && document.getElementById('tech-specs').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function scrollBooking() {
+      document.getElementById('dinein-booking').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* 1a. ACTIVE NAV LINK — INTERSECTION OBSERVER */
+    (function initNavObserver() {
+      // Map section IDs to nav data-section values
+      const sectionMap = [
+        { id: 'hero-section',    nav: 'hero' },
+        { id: 'menu-catalog',   nav: 'menu-catalog' },
+        { id: 'dinein-booking', nav: 'dinein-booking' },
+        { id: 'about',          nav: 'about' },
+      ];
+
+      const navLinks = document.querySelectorAll('#nav-menu .nav-link');
+
+      function setActive(sectionNav) {
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('data-section') === sectionNav);
+        });
+      }
+
+      // Default: hero active
+      setActive('hero');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const matched = sectionMap.find(s => s.id === entry.target.id);
+            if (matched) setActive(matched.nav);
+          }
+        });
+      }, {
+        root: null,
+        // Trigger when section reaches upper-third of viewport
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0
+      });
+
+      // Observe after DOM is ready
+      document.addEventListener('DOMContentLoaded', () => {
+        // Give hero header an id so observer can track it
+        const heroEl = document.querySelector('header.hero');
+        if (heroEl) heroEl.id = 'hero-section';
+
+        sectionMap.forEach(s => {
+          const el = document.getElementById(s.id);
+          if (el) observer.observe(el);
+        });
+
+        // Also handle scroll to top (back to hero)
+        window.addEventListener('scroll', () => {
+          if (window.scrollY < 100) setActive('hero');
+        });
+      });
+    })();
+
+    /* 1b. RESTAURANT RESERVATION & TABLE STATE */
+    let selectedTable = 4;
+    let activeBooking = null;
+
+    // Set today's date as default in reservation form
+    document.addEventListener("DOMContentLoaded", () => {
+      const dateInput = document.getElementById('book-date');
+      if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.value = today;
+        dateInput.min = today;
+      }
+    });
+
+    function autoFilterTables(guestCount) {
+      const guests = parseInt(guestCount, 10);
+      const tables = document.querySelectorAll('.restaurant-table');
+      let foundAvailable = false;
+      let firstMatchTableId = null;
+
+      tables.forEach(table => {
+        const capacity = parseInt(table.getAttribute('data-capacity'), 10);
+        const isReserved = table.classList.contains('reserved');
+
+        // Reset visibility opacity
+        table.style.opacity = '1';
+        
+        // If guest count fits the capacity
+        if (capacity < guests) {
+          table.style.opacity = '0.35'; // Visual fade out
+        } else if (!isReserved && !foundAvailable) {
+          firstMatchTableId = parseInt(table.getAttribute('data-table'), 10);
+          foundAvailable = true;
+        }
+      });
+
+      if (foundAvailable && firstMatchTableId !== null) {
+        selectTableUI(firstMatchTableId);
+      }
+    }
+
+    function selectTableUI(tableId) {
+      const tables = document.querySelectorAll('.restaurant-table');
+      tables.forEach(table => {
+        const id = parseInt(table.getAttribute('data-table'), 10);
+        if (table.classList.contains('reserved')) return;
+        
+        table.classList.remove('selected', 'available');
+        if (id === tableId) {
+          table.classList.add('selected');
+          const statusLbl = table.querySelector('.table-status-label');
+          if (statusLbl) statusLbl.textContent = 'Selected';
+          selectedTable = tableId;
+
+          // Sync selection with the cart drawer dropdown
+          const cartSelect = document.getElementById('cart-table-select');
+          if (cartSelect) {
+            cartSelect.value = tableId;
+          }
+        } else {
+          table.classList.add('available');
+          const statusLbl = table.querySelector('.table-status-label');
+          if (statusLbl) statusLbl.textContent = 'Available';
+        }
+      });
+    }
+
+    function updateCartTable(tableId) {
+      selectTableUI(parseInt(tableId, 10));
+    }
+
+    function submitBooking() {
+      const name = document.getElementById('book-name').value;
+      const phone = document.getElementById('book-phone').value;
+      const date = document.getElementById('book-date').value;
+      const time = document.getElementById('book-time').value;
+      const guests = document.getElementById('book-guests').value;
+
+      activeBooking = {
+        name,
+        phone,
+        date,
+        time,
+        guests,
+        table: selectedTable
+      };
+
+      // Pre-fill guest details in the order panel
+      document.getElementById('guest-name').value = name;
+      document.getElementById('delivery-phone').value = phone;
+
+      const preOrderChecked = document.getElementById('book-preorder').checked;
+      if (preOrderChecked) {
+        toggleCartDrawer(true);
+        alert(`Table T${selectedTable} reserved for ${guests} guests. Add your pre-order dishes in the order panel!`);
+      } else {
+        showBookingSuccessModal();
+      }
+    }
+
+    function togglePreorderPrompt(checked) {
+      const btn = document.getElementById('btn-submit-booking');
+      btn.textContent = checked ? "Reserve Table & Pre-order Food" : "Confirm Reservation";
+    }
+
+    function showBookingSuccessModal() {
+      const randomBookingId = 'BK-' + Math.floor(10000 + Math.random() * 90000);
+      const modalTitle = document.querySelector('#launch-success-modal .success-modal-title');
+      const modalDesc = document.querySelector('#launch-success-modal .success-modal-desc');
+      const detailsBox = document.querySelector('#launch-success-modal .success-details-box');
+
+      modalTitle.textContent = "Table Reserved Successfully!";
+      modalDesc.textContent = "Your reservation is confirmed. We look forward to hosting you. Please arrive 10 minutes prior to your time slot.";
+
+      const selectedTableText = `Table T${selectedTable} (${activeBooking.guests} Guests)`;
+      const bookingTimeText = `${activeBooking.date} @ ${activeBooking.time}`;
+      const nameText = activeBooking.name;
+
+      detailsBox.innerHTML = `
+        <div class="details-row">
+          <span class="details-lbl">Booking ID</span>
+          <span class="details-val">${randomBookingId}</span>
+        </div>
+        <div class="details-row">
+          <span class="details-lbl">Assigned Table</span>
+          <span class="details-val">${selectedTableText}</span>
+        </div>
+        <div class="details-row">
+          <span class="details-lbl">Reservation Slot</span>
+          <span class="details-val">${bookingTimeText}</span>
+        </div>
+        <div class="details-row">
+          <span class="details-lbl">Guest Name</span>
+          <span class="details-val">${nameText}</span>
+        </div>
+      `;
+
+      // Open Success modal
+      const modal = document.getElementById('launch-success-modal');
+      modal.classList.add('visible');
+      document.body.style.overflow = 'hidden';
     }
 
     /* 2. CATEGORY FILTER CONTROLLER */
@@ -1652,9 +2825,8 @@
       });
     }
 
-    /* 3. FLIGHT PAYLOAD (CART) ENGINE */
+    /* 3. TABLE ORDER ENGINE */
     let payload = [];
-    const deliveryPartnerFee = 40.00;
 
     function toggleCartDrawer(open) {
       const drawer = document.getElementById('cart-drawer');
@@ -1712,7 +2884,7 @@
             <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path>
             </svg>
-            <p>Your cart is empty.</p>
+            <p>Your order is empty. Browse the menu to add dishes.</p>
           </div>
         `;
         badge.textContent = 0;
@@ -1763,17 +2935,45 @@
       container.innerHTML = innerHTML;
       badge.textContent = totalItems;
       subtotalLabel.textContent = `₹${costSum.toFixed(2)}`;
-      totalLabel.textContent = `₹${(costSum + deliveryPartnerFee).toFixed(2)}`;
+      totalLabel.textContent = `₹${costSum.toFixed(2)}`;
       submitBtn.disabled = false;
     }
 
-    /* 4. REALISTIC ORDER SUBMIT ENGINE */
+    /* 4. ORDER SUBMIT */
     function initiateLaunch() {
-      const destination = document.getElementById('dock-id').value || 'Bengaluru';
       const randomOrderId = 'AD-' + Math.floor(10000 + Math.random() * 90000);
       
-      document.getElementById('success-order-id').textContent = randomOrderId;
-      document.getElementById('success-address').textContent = destination;
+      const modalTitle = document.querySelector('#launch-success-modal .success-modal-title');
+      const modalDesc = document.querySelector('#launch-success-modal .success-modal-desc');
+      const detailsBox = document.querySelector('#launch-success-modal .success-details-box');
+
+      const guestName = document.getElementById('guest-name').value.trim() || (activeBooking ? activeBooking.name : 'Valued Guest');
+      const selectedTableText = `Table T${selectedTable}`;
+      const bookingTimeText = activeBooking ? `${activeBooking.date} @ ${activeBooking.time}` : 'Walk-in · Today';
+
+      modalTitle.textContent = activeBooking ? "Pre-order Confirmed!" : "Order Sent to Kitchen!";
+      modalDesc.textContent = activeBooking
+        ? "Your pre-order is confirmed. Our kitchen will have your dishes ready when you arrive."
+        : "Your order has been received. Our chefs are preparing your dishes — they will be served fresh at your table shortly.";
+
+      detailsBox.innerHTML = `
+        <div class="details-row">
+          <span class="details-lbl">Order ID</span>
+          <span class="details-val">${randomOrderId}</span>
+        </div>
+        <div class="details-row">
+          <span class="details-lbl">Table</span>
+          <span class="details-val">${selectedTableText}</span>
+        </div>
+        <div class="details-row">
+          <span class="details-lbl">Guest</span>
+          <span class="details-val">${guestName}</span>
+        </div>
+        <div class="details-row">
+          <span class="details-lbl">${activeBooking ? 'Reservation' : 'Est. Serve Time'}</span>
+          <span class="details-val">${activeBooking ? bookingTimeText : '15 - 25 Mins'}</span>
+        </div>
+      `;
 
       toggleCartDrawer(false);
 
