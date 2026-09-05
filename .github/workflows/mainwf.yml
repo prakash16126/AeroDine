@@ -22,4 +22,4 @@ jobs:
         run: echo "Hello from GitHub Actions!"
 
       - name: Show Application
-        run: cat index.html
+        run: cat foodorder.html
