@@ -65,7 +65,6 @@ jobs:
       - name: Prepare artifact directory
         run: |
           mkdir -p public
-          # Copy common static files into public (ignore errors if files/folders not present)
           cp -a *.html *.css *.js images public/ 2>/dev/null || true
           find . -maxdepth 1 -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -exec cp {} public/ \;
 
@@ -98,7 +97,6 @@ jobs:
         run: echo "Security scan completed"
 
   deploy:
-    # Only try to evaluate inputs.deploy if this was a workflow_dispatch run
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.deploy == true }}
     needs: [security]
     runs-on: ubuntu-latest
@@ -113,19 +111,8 @@ jobs:
           cp -a *.html *.css *.js images public/ 2>/dev/null || true
           find . -maxdepth 1 -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -exec cp {} public/ \;
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./public
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v2
-
       - name: Notify
-        run: echo "Deployed to GitHub Pages by ${{ inputs.username }} to ${{ inputs.environment }}"
+        run: echo "Deployed to ${{ inputs.environment }} by ${{ inputs.username }}"
 
   info:
     runs-on: ubuntu-latest
