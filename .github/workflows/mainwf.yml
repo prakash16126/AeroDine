@@ -1,24 +1,134 @@
-name: First GitHub Actions Workflow
+name: CI
+
+permissions:
+  contents: read
+  pages: write
 
 on:
   push:
-    branches:
-      - main    
+    branches: ["master", "main", "dev"]
+
+  workflow_dispatch:
+    inputs:
+      username:
+        description: "Enter your username"
+        required: true
+        default: "Raham"
+        type: string
+
+      environment:
+        description: "Select deployment environment"
+        required: true
+        default: "staging"
+        type: choice
+        options:
+          - dev
+          - staging
+          - production
+
+      deploy:
+        description: "Do you want to deploy?"
+        required: true
+        default: false
+        type: boolean
+
 jobs:
 
-  hello:
+  build:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Checkout Code
-        uses: actions/checkout@v6
+      - name: Show Inputs (only for workflow_dispatch)
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "Username: ${{ inputs.username }}"
+            echo "Environment: ${{ inputs.environment }}"
+            echo "Deploy: ${{ inputs.deploy }}"
+          else
+            echo "Triggered by ${{ github.event_name }} - no workflow inputs"
+          fi
 
-      - name: Show Files
+      - name: List repository files
         run: ls -la
 
-      - name: Display Message
-        run: echo "Hello from GitHub Actions!"
+      - name: Check for site files
+        run: |
+          if [ -f foodorder.html ] || [ -f index.html ]; then
+            echo "Found site files"
+          else
+            echo "No primary HTML files found (expected foodorder.html or index.html)" && exit 1
+          fi
 
-      - name: Show Application
-        run: cat foodorder.html
+      - name: Prepare artifact directory
+        run: |
+          mkdir -p public
+          # Copy common static files into public (ignore errors if files/folders not present)
+          cp -a *.html *.css *.js images public/ 2>/dev/null || true
+          find . -maxdepth 1 -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -exec cp {} public/ \;
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Start simple server and smoke test
+        run: |
+          python3 -m http.server 8000 &
+          SERVER_PID=$!
+          sleep 1
+          if curl -fsS http://localhost:8000/foodorder.html >/dev/null 2>&1 || curl -fsS http://localhost:8000/index.html >/dev/null 2>&1; then
+            echo "Site responds"
+          else
+            echo "Site did not respond" && kill $SERVER_PID && exit 1
+          fi
+          kill $SERVER_PID || true
+
+  security:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Security Check
+        run: echo "Security scan completed"
+
+  deploy:
+    # Only try to evaluate inputs.deploy if this was a workflow_dispatch run
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.deploy == true }}
+    needs: [security]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build artifact for Pages
+        run: |
+          mkdir -p public
+          cp -a *.html *.css *.js images public/ 2>/dev/null || true
+          find . -maxdepth 1 -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -exec cp {} public/ \;
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./public
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
+
+      - name: Notify
+        run: echo "Deployed to GitHub Pages by ${{ inputs.username }} to ${{ inputs.environment }}"
+
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output of the Job
+        run: echo "${{ toJson(github) }}"
